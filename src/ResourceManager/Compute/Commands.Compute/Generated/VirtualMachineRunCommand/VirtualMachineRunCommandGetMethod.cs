@@ -30,79 +30,79 @@ using System.Management.Automation;
 
 namespace Microsoft.Azure.Commands.Compute.Automation
 {
-    public partial class InvokeAzureComputeMethodCmdlet : ComputeAutomationBaseCmdlet
-    {
-        protected object CreateVirtualMachineRunCommandGetDynamicParameters()
-        {
-            dynamicParameters = new RuntimeDefinedParameterDictionary();
-            var pLocation = new RuntimeDefinedParameter();
-            pLocation.Name = "Location";
-            pLocation.ParameterType = typeof(string);
-            pLocation.Attributes.Add(new ParameterAttribute
-            {
-                ParameterSetName = "InvokeByDynamicParameters",
-                Position = 1,
-                Mandatory = true
-            });
-            pLocation.Attributes.Add(new AllowNullAttribute());
-            dynamicParameters.Add("Location", pLocation);
+    //public partial class InvokeAzureComputeMethodCmdlet : ComputeAutomationBaseCmdlet
+    //{
+    //    protected object CreateVirtualMachineRunCommandGetDynamicParameters()
+    //    {
+    //        dynamicParameters = new RuntimeDefinedParameterDictionary();
+    //        var pLocation = new RuntimeDefinedParameter();
+    //        pLocation.Name = "Location";
+    //        pLocation.ParameterType = typeof(string);
+    //        pLocation.Attributes.Add(new ParameterAttribute
+    //        {
+    //            ParameterSetName = "InvokeByDynamicParameters",
+    //            Position = 1,
+    //            Mandatory = true
+    //        });
+    //        pLocation.Attributes.Add(new AllowNullAttribute());
+    //        dynamicParameters.Add("Location", pLocation);
 
-            var pCommandId = new RuntimeDefinedParameter();
-            pCommandId.Name = "CommandId";
-            pCommandId.ParameterType = typeof(string);
-            pCommandId.Attributes.Add(new ParameterAttribute
-            {
-                ParameterSetName = "InvokeByDynamicParameters",
-                Position = 2,
-                Mandatory = true
-            });
-            pCommandId.Attributes.Add(new AllowNullAttribute());
-            dynamicParameters.Add("CommandId", pCommandId);
+    //        var pCommandId = new RuntimeDefinedParameter();
+    //        pCommandId.Name = "CommandId";
+    //        pCommandId.ParameterType = typeof(string);
+    //        pCommandId.Attributes.Add(new ParameterAttribute
+    //        {
+    //            ParameterSetName = "InvokeByDynamicParameters",
+    //            Position = 2,
+    //            Mandatory = true
+    //        });
+    //        pCommandId.Attributes.Add(new AllowNullAttribute());
+    //        dynamicParameters.Add("CommandId", pCommandId);
 
-            var pArgumentList = new RuntimeDefinedParameter();
-            pArgumentList.Name = "ArgumentList";
-            pArgumentList.ParameterType = typeof(object[]);
-            pArgumentList.Attributes.Add(new ParameterAttribute
-            {
-                ParameterSetName = "InvokeByStaticParameters",
-                Position = 3,
-                Mandatory = true
-            });
-            pArgumentList.Attributes.Add(new AllowNullAttribute());
-            dynamicParameters.Add("ArgumentList", pArgumentList);
+    //        var pArgumentList = new RuntimeDefinedParameter();
+    //        pArgumentList.Name = "ArgumentList";
+    //        pArgumentList.ParameterType = typeof(object[]);
+    //        pArgumentList.Attributes.Add(new ParameterAttribute
+    //        {
+    //            ParameterSetName = "InvokeByStaticParameters",
+    //            Position = 3,
+    //            Mandatory = true
+    //        });
+    //        pArgumentList.Attributes.Add(new AllowNullAttribute());
+    //        dynamicParameters.Add("ArgumentList", pArgumentList);
 
-            return dynamicParameters;
-        }
+    //        return dynamicParameters;
+    //    }
 
-        protected void ExecuteVirtualMachineRunCommandGetMethod(object[] invokeMethodInputParameters)
-        {
-            string location = (string)ParseParameter(invokeMethodInputParameters[0]);
-            string commandId = (string)ParseParameter(invokeMethodInputParameters[1]);
+    //    protected void ExecuteVirtualMachineRunCommandGetMethod(object[] invokeMethodInputParameters)
+    //    {
+    //        string location = (string)ParseParameter(invokeMethodInputParameters[0]);
+    //        string commandId = (string)ParseParameter(invokeMethodInputParameters[1]);
 
-            if (!string.IsNullOrEmpty(location) && !string.IsNullOrEmpty(commandId))
-            {
-                var result = VirtualMachineRunCommandsClient.Get(location, commandId);
-                WriteObject(result);
-            }
-            else if (!string.IsNullOrEmpty(location))
-            {
-                var result = VirtualMachineRunCommandsClient.List(location);
-                var resultList = result.ToList();
-                var nextPageLink = result.NextPageLink;
-                while (!string.IsNullOrEmpty(nextPageLink))
-                {
-                    var pageResult = VirtualMachineRunCommandsClient.ListNext(nextPageLink);
-                    foreach (var pageItem in pageResult)
-                    {
-                        resultList.Add(pageItem);
-                    }
-                    nextPageLink = pageResult.NextPageLink;
-                }
-                WriteObject(resultList, true);
-            }
-        }
+    //        if (!string.IsNullOrEmpty(location) && !string.IsNullOrEmpty(commandId))
+    //        {
+    //            var result = VirtualMachineRunCommandsClient.Get(location, commandId);
+    //            WriteObject(result);
+    //        }
+    //        else if (!string.IsNullOrEmpty(location))
+    //        {
+    //            var result = VirtualMachineRunCommandsClient.List(location);
+    //            var resultList = result.ToList();
+    //            var nextPageLink = result.NextPageLink;
+    //            while (!string.IsNullOrEmpty(nextPageLink))
+    //            {
+    //                var pageResult = VirtualMachineRunCommandsClient.ListNext(nextPageLink);
+    //                foreach (var pageItem in pageResult)
+    //                {
+    //                    resultList.Add(pageItem);
+    //                }
+    //                nextPageLink = pageResult.NextPageLink;
+    //            }
+    //            WriteObject(resultList, true);
+    //        }
+    //    }
 
-    }
+    //}
 
     public partial class NewAzureComputeArgumentListCmdlet : ComputeAutomationBaseCmdlet
     {
@@ -117,65 +117,65 @@ namespace Microsoft.Azure.Commands.Compute.Automation
         }
     }
 
-    [Cmdlet(VerbsCommon.Get, "AzureRmVMRunCommandDocument", DefaultParameterSetName = "DefaultParameter")]
-    [OutputType(typeof(PSRunCommandDocument))]
-    public partial class GetAzureRmVMRunCommandDocument : ComputeAutomationBaseCmdlet
-    {
-        public override void ExecuteCmdlet()
-        {
-            ExecuteClientAction(() =>
-            {
-                string location = this.Location;
-                string commandId = this.CommandId;
+    //[Cmdlet(VerbsCommon.Get, "AzureRmVMRunCommandDocument", DefaultParameterSetName = "DefaultParameter")]
+    //[OutputType(typeof(PSRunCommandDocument))]
+    //public partial class GetAzureRmVMRunCommandDocument : ComputeAutomationBaseCmdlet
+    //{
+    //    public override void ExecuteCmdlet()
+    //    {
+    //        ExecuteClientAction(() =>
+    //        {
+    //            string location = this.Location;
+    //            string commandId = this.CommandId;
 
-                if (!string.IsNullOrEmpty(location) && !string.IsNullOrEmpty(commandId))
-                {
-                    var result = VirtualMachineRunCommandsClient.Get(location, commandId);
-                    var psObject = new PSRunCommandDocument();
-                    ComputeAutomationAutoMapperProfile.Mapper.Map<RunCommandDocument, PSRunCommandDocument>(result, psObject);
-                    WriteObject(psObject);
-                }
-                else if (!string.IsNullOrEmpty(location))
-                {
-                    var result = VirtualMachineRunCommandsClient.List(location);
-                    var resultList = result.ToList();
-                    var nextPageLink = result.NextPageLink;
-                    while (!string.IsNullOrEmpty(nextPageLink))
-                    {
-                        var pageResult = VirtualMachineRunCommandsClient.ListNext(nextPageLink);
-                        foreach (var pageItem in pageResult)
-                        {
-                            resultList.Add(pageItem);
-                        }
-                        nextPageLink = pageResult.NextPageLink;
-                    }
-                    var psObject = new List<PSRunCommandDocumentBase>();
-                    foreach (var r in resultList)
-                    {
-                        psObject.Add(ComputeAutomationAutoMapperProfile.Mapper.Map<RunCommandDocumentBase, PSRunCommandDocumentBase>(r));
-                    }
-                    WriteObject(psObject, true);
-                }
-            });
-        }
+    //            if (!string.IsNullOrEmpty(location) && !string.IsNullOrEmpty(commandId))
+    //            {
+    //                var result = VirtualMachineRunCommandsClient.Get(location, commandId);
+    //                var psObject = new PSRunCommandDocument();
+    //                ComputeAutomationAutoMapperProfile.Mapper.Map<RunCommandDocument, PSRunCommandDocument>(result, psObject);
+    //                WriteObject(psObject);
+    //            }
+    //            else if (!string.IsNullOrEmpty(location))
+    //            {
+    //                var result = VirtualMachineRunCommandsClient.List(location);
+    //                var resultList = result.ToList();
+    //                var nextPageLink = result.NextPageLink;
+    //                while (!string.IsNullOrEmpty(nextPageLink))
+    //                {
+    //                    var pageResult = VirtualMachineRunCommandsClient.ListNext(nextPageLink);
+    //                    foreach (var pageItem in pageResult)
+    //                    {
+    //                        resultList.Add(pageItem);
+    //                    }
+    //                    nextPageLink = pageResult.NextPageLink;
+    //                }
+    //                var psObject = new List<PSRunCommandDocumentBase>();
+    //                foreach (var r in resultList)
+    //                {
+    //                    psObject.Add(ComputeAutomationAutoMapperProfile.Mapper.Map<RunCommandDocumentBase, PSRunCommandDocumentBase>(r));
+    //                }
+    //                WriteObject(psObject, true);
+    //            }
+    //        });
+    //    }
 
-        [Parameter(
-            ParameterSetName = "DefaultParameter",
-            Position = 1,
-            Mandatory = true,
-            ValueFromPipelineByPropertyName = true,
-            ValueFromPipeline = false)]
-        [AllowNull]
-        [ResourceManager.Common.ArgumentCompleters.LocationCompleter("Microsoft.Compute/locations/runCommands")]
-        public string Location { get; set; }
+    //    [Parameter(
+    //        ParameterSetName = "DefaultParameter",
+    //        Position = 1,
+    //        Mandatory = true,
+    //        ValueFromPipelineByPropertyName = true,
+    //        ValueFromPipeline = false)]
+    //    [AllowNull]
+    //    [ResourceManager.Common.ArgumentCompleters.LocationCompleter("Microsoft.Compute/locations/runCommands")]
+    //    public string Location { get; set; }
 
-        [Parameter(
-            ParameterSetName = "DefaultParameter",
-            Position = 2,
-            Mandatory = false,
-            ValueFromPipelineByPropertyName = true,
-            ValueFromPipeline = false)]
-        [AllowNull]
-        public string CommandId { get; set; }
-    }
+    //    [Parameter(
+    //        ParameterSetName = "DefaultParameter",
+    //        Position = 2,
+    //        Mandatory = false,
+    //        ValueFromPipelineByPropertyName = true,
+    //        ValueFromPipeline = false)]
+    //    [AllowNull]
+    //    public string CommandId { get; set; }
+    //}
 }

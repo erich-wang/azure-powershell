@@ -20,6 +20,7 @@
 // code is regenerated.
 
 using Microsoft.Azure.Commands.Compute.Automation.Models;
+using Microsoft.Azure.Commands.ResourceManager.Common.ArgumentCompleters;
 using Microsoft.Azure.Management.Compute.Models;
 using System;
 using System.Collections;
@@ -38,7 +39,8 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             Position = 0,
             ValueFromPipelineByPropertyName = true)]
         [Alias("AccountType")]
-        public StorageAccountTypes? SkuName { get; set; }
+        [PSArgumentCompleter("Standard_LRS", "Premium_LRS")]
+        public string SkuName { get; set; }
 
         [Parameter(
             Mandatory = false,

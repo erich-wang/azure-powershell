@@ -88,13 +88,13 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             }
         }
 
-        public IContainerServicesOperations ContainerServicesClient
-        {
-            get
-            {
-                return ComputeClient.ComputeManagementClient.ContainerServices;
-            }
-        }
+        //public IContainerServicesOperations ContainerServicesClient
+        //{
+        //    get
+        //    {
+        //        return ComputeClient.ComputeManagementClient.ContainerServices;
+        //    }
+        //}
 
         public IDisksOperations DisksClient
         {
@@ -120,13 +120,13 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             }
         }
 
-        public IResourceSkusOperations ResourceSkusClient
-        {
-            get
-            {
-                return ComputeClient.ComputeManagementClient.ResourceSkus;
-            }
-        }
+        //public IResourceSkusOperations ResourceSkusClient
+        //{
+        //    get
+        //    {
+        //        return ComputeClient.ComputeManagementClient.ResourceSkus;
+        //    }
+        //}
 
         public ISnapshotsOperations SnapshotsClient
         {
@@ -136,13 +136,13 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             }
         }
 
-        public IVirtualMachineRunCommandsOperations VirtualMachineRunCommandsClient
-        {
-            get
-            {
-                return ComputeClient.ComputeManagementClient.VirtualMachineRunCommands;
-            }
-        }
+        //public IVirtualMachineRunCommandsOperations VirtualMachineRunCommandsClient
+        //{
+        //    get
+        //    {
+        //        return ComputeClient.ComputeManagementClient.VirtualMachineRunCommands;
+        //    }
+        //}
 
         public IVirtualMachineScaleSetRollingUpgradesOperations VirtualMachineScaleSetRollingUpgradesClient
         {

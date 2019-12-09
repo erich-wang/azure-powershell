@@ -20,6 +20,7 @@
 // code is regenerated.
 
 using Microsoft.Azure.Commands.Compute.Automation.Models;
+using Microsoft.Azure.Commands.ResourceManager.Common.ArgumentCompleters;
 using Microsoft.Azure.Management.Compute.Models;
 using System;
 using System.Collections;
@@ -65,7 +66,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
         [Parameter(
             Mandatory = false,
             ValueFromPipelineByPropertyName = true)]
-        public DiskCreateOptionTypes? CreateOption { get; set; }
+        public string CreateOption { get; set; }
 
         [Parameter(
             Mandatory = false,
@@ -75,7 +76,8 @@ namespace Microsoft.Azure.Commands.Compute.Automation
         [Parameter(
             Mandatory = false,
             ValueFromPipelineByPropertyName = true)]
-        public StorageAccountTypes? StorageAccountType { get; set; }
+        [PSArgumentCompleter("Standard_LRS", "Premium_LRS")]
+        public string StorageAccountType { get; set; }
 
         protected override void ProcessRecord()
         {
@@ -111,9 +113,9 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             vDataDisks.Lun = this.Lun;
             vDataDisks.Caching = this.Caching;
             vDataDisks.WriteAcceleratorEnabled = this.WriteAccelerator.IsPresent;
-            if (this.CreateOption.HasValue)
+            if (this.CreateOption != null)
             {
-                vDataDisks.CreateOption = this.CreateOption.Value;
+                vDataDisks.CreateOption = this.CreateOption;
             }
             vDataDisks.DiskSizeGB = this.DiskSizeGB;
             if (this.StorageAccountType != null)

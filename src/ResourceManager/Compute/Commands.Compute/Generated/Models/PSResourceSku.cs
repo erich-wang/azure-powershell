@@ -23,7 +23,7 @@ using Microsoft.Azure.Management.Compute.Models;
 
 namespace Microsoft.Azure.Commands.Compute.Automation.Models
 {
-    public partial class PSResourceSku : ResourceSku
-    {
-    }
+    //public partial class PSResourceSku : ResourceSku
+    //{
+    //}
 }

@@ -30,57 +30,57 @@ using System.Management.Automation;
 
 namespace Microsoft.Azure.Commands.Compute.Automation
 {
-    public partial class InvokeAzureComputeMethodCmdlet : ComputeAutomationBaseCmdlet
-    {
-        protected object CreateVirtualMachineRunCommandListDynamicParameters()
-        {
-            dynamicParameters = new RuntimeDefinedParameterDictionary();
-            var pLocation = new RuntimeDefinedParameter();
-            pLocation.Name = "Location";
-            pLocation.ParameterType = typeof(string);
-            pLocation.Attributes.Add(new ParameterAttribute
-            {
-                ParameterSetName = "InvokeByDynamicParameters",
-                Position = 1,
-                Mandatory = true
-            });
-            pLocation.Attributes.Add(new AllowNullAttribute());
-            dynamicParameters.Add("Location", pLocation);
+    //public partial class InvokeAzureComputeMethodCmdlet : ComputeAutomationBaseCmdlet
+    //{
+    //    protected object CreateVirtualMachineRunCommandListDynamicParameters()
+    //    {
+    //        dynamicParameters = new RuntimeDefinedParameterDictionary();
+    //        var pLocation = new RuntimeDefinedParameter();
+    //        pLocation.Name = "Location";
+    //        pLocation.ParameterType = typeof(string);
+    //        pLocation.Attributes.Add(new ParameterAttribute
+    //        {
+    //            ParameterSetName = "InvokeByDynamicParameters",
+    //            Position = 1,
+    //            Mandatory = true
+    //        });
+    //        pLocation.Attributes.Add(new AllowNullAttribute());
+    //        dynamicParameters.Add("Location", pLocation);
 
-            var pArgumentList = new RuntimeDefinedParameter();
-            pArgumentList.Name = "ArgumentList";
-            pArgumentList.ParameterType = typeof(object[]);
-            pArgumentList.Attributes.Add(new ParameterAttribute
-            {
-                ParameterSetName = "InvokeByStaticParameters",
-                Position = 2,
-                Mandatory = true
-            });
-            pArgumentList.Attributes.Add(new AllowNullAttribute());
-            dynamicParameters.Add("ArgumentList", pArgumentList);
+    //        var pArgumentList = new RuntimeDefinedParameter();
+    //        pArgumentList.Name = "ArgumentList";
+    //        pArgumentList.ParameterType = typeof(object[]);
+    //        pArgumentList.Attributes.Add(new ParameterAttribute
+    //        {
+    //            ParameterSetName = "InvokeByStaticParameters",
+    //            Position = 2,
+    //            Mandatory = true
+    //        });
+    //        pArgumentList.Attributes.Add(new AllowNullAttribute());
+    //        dynamicParameters.Add("ArgumentList", pArgumentList);
 
-            return dynamicParameters;
-        }
+    //        return dynamicParameters;
+    //    }
 
-        protected void ExecuteVirtualMachineRunCommandListMethod(object[] invokeMethodInputParameters)
-        {
-            string location = (string)ParseParameter(invokeMethodInputParameters[0]);
+    //    protected void ExecuteVirtualMachineRunCommandListMethod(object[] invokeMethodInputParameters)
+    //    {
+    //        string location = (string)ParseParameter(invokeMethodInputParameters[0]);
 
-            var result = VirtualMachineRunCommandsClient.List(location);
-            var resultList = result.ToList();
-            var nextPageLink = result.NextPageLink;
-            while (!string.IsNullOrEmpty(nextPageLink))
-            {
-                var pageResult = VirtualMachineRunCommandsClient.ListNext(nextPageLink);
-                foreach (var pageItem in pageResult)
-                {
-                    resultList.Add(pageItem);
-                }
-                nextPageLink = pageResult.NextPageLink;
-            }
-            WriteObject(resultList, true);
-        }
-    }
+    //        var result = VirtualMachineRunCommandsClient.List(location);
+    //        var resultList = result.ToList();
+    //        var nextPageLink = result.NextPageLink;
+    //        while (!string.IsNullOrEmpty(nextPageLink))
+    //        {
+    //            var pageResult = VirtualMachineRunCommandsClient.ListNext(nextPageLink);
+    //            foreach (var pageItem in pageResult)
+    //            {
+    //                resultList.Add(pageItem);
+    //            }
+    //            nextPageLink = pageResult.NextPageLink;
+    //        }
+    //        WriteObject(resultList, true);
+    //    }
+    //}
 
     public partial class NewAzureComputeArgumentListCmdlet : ComputeAutomationBaseCmdlet
     {

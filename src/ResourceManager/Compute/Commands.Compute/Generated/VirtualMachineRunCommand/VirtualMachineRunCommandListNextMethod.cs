@@ -30,46 +30,46 @@ using System.Management.Automation;
 
 namespace Microsoft.Azure.Commands.Compute.Automation
 {
-    public partial class InvokeAzureComputeMethodCmdlet : ComputeAutomationBaseCmdlet
-    {
-        protected object CreateVirtualMachineRunCommandListNextDynamicParameters()
-        {
-            dynamicParameters = new RuntimeDefinedParameterDictionary();
-            var pNextPageLink = new RuntimeDefinedParameter();
-            pNextPageLink.Name = "NextPageLink";
-            pNextPageLink.ParameterType = typeof(string);
-            pNextPageLink.Attributes.Add(new ParameterAttribute
-            {
-                ParameterSetName = "InvokeByDynamicParameters",
-                Position = 1,
-                Mandatory = true
-            });
-            pNextPageLink.Attributes.Add(new AllowNullAttribute());
-            dynamicParameters.Add("NextPageLink", pNextPageLink);
+    //public partial class InvokeAzureComputeMethodCmdlet : ComputeAutomationBaseCmdlet
+    //{
+    //    protected object CreateVirtualMachineRunCommandListNextDynamicParameters()
+    //    {
+    //        dynamicParameters = new RuntimeDefinedParameterDictionary();
+    //        var pNextPageLink = new RuntimeDefinedParameter();
+    //        pNextPageLink.Name = "NextPageLink";
+    //        pNextPageLink.ParameterType = typeof(string);
+    //        pNextPageLink.Attributes.Add(new ParameterAttribute
+    //        {
+    //            ParameterSetName = "InvokeByDynamicParameters",
+    //            Position = 1,
+    //            Mandatory = true
+    //        });
+    //        pNextPageLink.Attributes.Add(new AllowNullAttribute());
+    //        dynamicParameters.Add("NextPageLink", pNextPageLink);
 
-            var pArgumentList = new RuntimeDefinedParameter();
-            pArgumentList.Name = "ArgumentList";
-            pArgumentList.ParameterType = typeof(object[]);
-            pArgumentList.Attributes.Add(new ParameterAttribute
-            {
-                ParameterSetName = "InvokeByStaticParameters",
-                Position = 2,
-                Mandatory = true
-            });
-            pArgumentList.Attributes.Add(new AllowNullAttribute());
-            dynamicParameters.Add("ArgumentList", pArgumentList);
+    //        var pArgumentList = new RuntimeDefinedParameter();
+    //        pArgumentList.Name = "ArgumentList";
+    //        pArgumentList.ParameterType = typeof(object[]);
+    //        pArgumentList.Attributes.Add(new ParameterAttribute
+    //        {
+    //            ParameterSetName = "InvokeByStaticParameters",
+    //            Position = 2,
+    //            Mandatory = true
+    //        });
+    //        pArgumentList.Attributes.Add(new AllowNullAttribute());
+    //        dynamicParameters.Add("ArgumentList", pArgumentList);
 
-            return dynamicParameters;
-        }
+    //        return dynamicParameters;
+    //    }
 
-        protected void ExecuteVirtualMachineRunCommandListNextMethod(object[] invokeMethodInputParameters)
-        {
-            string nextPageLink = (string)ParseParameter(invokeMethodInputParameters[0]);
+    //    protected void ExecuteVirtualMachineRunCommandListNextMethod(object[] invokeMethodInputParameters)
+    //    {
+    //        string nextPageLink = (string)ParseParameter(invokeMethodInputParameters[0]);
 
-            var result = VirtualMachineRunCommandsClient.ListNext(nextPageLink);
-            WriteObject(result);
-        }
-    }
+    //        var result = VirtualMachineRunCommandsClient.ListNext(nextPageLink);
+    //        WriteObject(result);
+    //    }
+    //}
 
     public partial class NewAzureComputeArgumentListCmdlet : ComputeAutomationBaseCmdlet
     {

@@ -21,11 +21,11 @@
 
 namespace Microsoft.Azure.Commands.Compute.Automation.Models
 {
-    public class PSContainerServiceList : PSContainerService
-    {
-        public PSContainerService ToPSContainerService ()
-        {
-            return ComputeAutomationAutoMapperProfile.Mapper.Map<PSContainerService>(this);
-        }
-    }
+    //public class PSContainerServiceList : PSContainerService
+    //{
+    //    public PSContainerService ToPSContainerService ()
+    //    {
+    //        return ComputeAutomationAutoMapperProfile.Mapper.Map<PSContainerService>(this);
+    //    }
+    //}
 }

@@ -59,9 +59,9 @@ namespace Microsoft.Azure.Commands.Compute.Automation.Models
                 cfg.CreateMap<FROM.AvailabilitySet, TO.PSAvailabilitySetList>();
                 cfg.CreateMap<TO.PSAvailabilitySetList, TO.PSAvailabilitySet>();
                 cfg.CreateMap<TO.PSAvailabilitySet, TO.PSAvailabilitySetList>();
-                cfg.CreateMap<FROM.ContainerService, TO.PSContainerServiceList>();
-                cfg.CreateMap<TO.PSContainerServiceList, TO.PSContainerService>();
-                cfg.CreateMap<TO.PSContainerService, TO.PSContainerServiceList>();
+                //cfg.CreateMap<FROM.ContainerService, TO.PSContainerServiceList>();
+                //cfg.CreateMap<TO.PSContainerServiceList, TO.PSContainerService>();
+                //cfg.CreateMap<TO.PSContainerService, TO.PSContainerServiceList>();
                 cfg.CreateMap<FROM.Disk, TO.PSDiskList>()
                     .ForMember(c => c.Zones, o => o.Condition(r => (r.Zones != null)));
                 cfg.CreateMap<TO.PSDiskList, TO.PSDisk>()
@@ -115,8 +115,8 @@ namespace Microsoft.Azure.Commands.Compute.Automation.Models
                 cfg.CreateMap<TO.PSOperationStatusResponse, FROM.OperationStatusResponse>();
                 cfg.CreateMap<FROM.VirtualMachineSize, TO.PSVirtualMachineSize>();
                 cfg.CreateMap<TO.PSVirtualMachineSize, FROM.VirtualMachineSize>();
-                cfg.CreateMap<FROM.ContainerService, TO.PSContainerService>();
-                cfg.CreateMap<TO.PSContainerService, FROM.ContainerService>();
+                //cfg.CreateMap<FROM.ContainerService, TO.PSContainerService>();
+                //cfg.CreateMap<TO.PSContainerService, FROM.ContainerService>();
                 cfg.CreateMap<FROM.Disk, TO.PSDisk>()
                     .ForMember(c => c.Zones, o => o.Condition(r => (r.Zones != null)));
                 cfg.CreateMap<TO.PSDisk, FROM.Disk>()
@@ -127,14 +127,14 @@ namespace Microsoft.Azure.Commands.Compute.Automation.Models
                 cfg.CreateMap<TO.PSImage, FROM.Image>();
                 cfg.CreateMap<FROM.LogAnalyticsOperationResult, TO.PSLogAnalyticsOperationResult>();
                 cfg.CreateMap<TO.PSLogAnalyticsOperationResult, FROM.LogAnalyticsOperationResult>();
-                cfg.CreateMap<FROM.ResourceSku, TO.PSResourceSku>();
-                cfg.CreateMap<TO.PSResourceSku, FROM.ResourceSku>();
+                //cfg.CreateMap<FROM.ResourceSku, TO.PSResourceSku>();
+                //cfg.CreateMap<TO.PSResourceSku, FROM.ResourceSku>();
                 cfg.CreateMap<FROM.Snapshot, TO.PSSnapshot>();
                 cfg.CreateMap<TO.PSSnapshot, FROM.Snapshot>();
-                cfg.CreateMap<FROM.RunCommandDocument, TO.PSRunCommandDocument>();
-                cfg.CreateMap<TO.PSRunCommandDocument, FROM.RunCommandDocument>();
-                cfg.CreateMap<FROM.RunCommandDocumentBase, TO.PSRunCommandDocumentBase>();
-                cfg.CreateMap<TO.PSRunCommandDocumentBase, FROM.RunCommandDocumentBase>();
+                //cfg.CreateMap<FROM.RunCommandDocument, TO.PSRunCommandDocument>();
+                //cfg.CreateMap<TO.PSRunCommandDocument, FROM.RunCommandDocument>();
+                //cfg.CreateMap<FROM.RunCommandDocumentBase, TO.PSRunCommandDocumentBase>();
+                //cfg.CreateMap<TO.PSRunCommandDocumentBase, FROM.RunCommandDocumentBase>();
                 cfg.CreateMap<FROM.RollingUpgradeStatusInfo, TO.PSRollingUpgradeStatusInfo>();
                 cfg.CreateMap<TO.PSRollingUpgradeStatusInfo, FROM.RollingUpgradeStatusInfo>();
                 cfg.CreateMap<FROM.VirtualMachineScaleSet, TO.PSVirtualMachineScaleSet>()
@@ -159,8 +159,8 @@ namespace Microsoft.Azure.Commands.Compute.Automation.Models
                     .ForMember(c => c.Zones, o => o.Condition(r => (r.Zones != null)));
                 cfg.CreateMap<FROM.VirtualMachineInstanceView, TO.PSVirtualMachineInstanceView>();
                 cfg.CreateMap<TO.PSVirtualMachineInstanceView, FROM.VirtualMachineInstanceView>();
-                cfg.CreateMap<FROM.RunCommandResult, TO.PSRunCommandResult>();
-                cfg.CreateMap<TO.PSRunCommandResult, FROM.RunCommandResult>();
+                //cfg.CreateMap<FROM.RunCommandResult, TO.PSRunCommandResult>();
+                //cfg.CreateMap<TO.PSRunCommandResult, FROM.RunCommandResult>();
 
             });
             _mapper = config.CreateMapper();

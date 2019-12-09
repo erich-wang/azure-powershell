@@ -20,6 +20,7 @@
 // code is regenerated.
 
 using Microsoft.Azure.Commands.Compute.Automation.Models;
+using Microsoft.Azure.Commands.ResourceManager.Common.ArgumentCompleters;
 using Microsoft.Azure.Management.Compute.Models;
 using System;
 using System.Collections;
@@ -81,7 +82,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             Mandatory = false,
             Position = 7,
             ValueFromPipelineByPropertyName = true)]
-        public DiskCreateOptionTypes? OsDiskCreateOption { get; set; }
+        public string OsDiskCreateOption { get; set; }
 
         [Parameter(
             Mandatory = false,
@@ -113,7 +114,8 @@ namespace Microsoft.Azure.Commands.Compute.Automation
         [Parameter(
             Mandatory = false,
             ValueFromPipelineByPropertyName = true)]
-        public Microsoft.Azure.Management.Compute.Models.StorageAccountTypes? ManagedDisk { get; set; }
+        [PSArgumentCompleter("Standard_LRS", "Premium_LRS")]
+        public string ManagedDisk { get; set; }
 
         [Parameter(
             Mandatory = false,
@@ -294,7 +296,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
             }
             this.VirtualMachineScaleSet.VirtualMachineProfile.StorageProfile.OsDisk.WriteAcceleratorEnabled = this.OsDiskWriteAccelerator.IsPresent;
 
-            if (this.OsDiskCreateOption.HasValue)
+            if (this.OsDiskCreateOption != null)
             {
 
                 // VirtualMachineProfile
@@ -313,7 +315,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                     this.VirtualMachineScaleSet.VirtualMachineProfile.StorageProfile.OsDisk = new Microsoft.Azure.Management.Compute.Models.VirtualMachineScaleSetOSDisk();
                 }
 
-                this.VirtualMachineScaleSet.VirtualMachineProfile.StorageProfile.OsDisk.CreateOption = this.OsDiskCreateOption.Value;
+                this.VirtualMachineScaleSet.VirtualMachineProfile.StorageProfile.OsDisk.CreateOption = this.OsDiskCreateOption;
             }
 
             if (this.OsDiskOsType != null)

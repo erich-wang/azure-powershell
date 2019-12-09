@@ -192,27 +192,27 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                     case "AvailabilitySetListAvailableSizes":
                         ExecuteAvailabilitySetListAvailableSizesMethod(argumentList);
                         break;
-                    case "ContainerServiceCreateOrUpdate":
-                        ExecuteContainerServiceCreateOrUpdateMethod(argumentList);
-                        break;
-                    case "ContainerServiceDelete":
-                        ExecuteContainerServiceDeleteMethod(argumentList);
-                        break;
-                    case "ContainerServiceGet":
-                        ExecuteContainerServiceGetMethod(argumentList);
-                        break;
-                    case "ContainerServiceList":
-                        ExecuteContainerServiceListMethod(argumentList);
-                        break;
-                    case "ContainerServiceListByResourceGroup":
-                        ExecuteContainerServiceListByResourceGroupMethod(argumentList);
-                        break;
-                    case "ContainerServiceListByResourceGroupNext":
-                        ExecuteContainerServiceListByResourceGroupNextMethod(argumentList);
-                        break;
-                    case "ContainerServiceListNext":
-                        ExecuteContainerServiceListNextMethod(argumentList);
-                        break;
+                    //case "ContainerServiceCreateOrUpdate":
+                    //    ExecuteContainerServiceCreateOrUpdateMethod(argumentList);
+                    //    break;
+                    //case "ContainerServiceDelete":
+                    //    ExecuteContainerServiceDeleteMethod(argumentList);
+                    //    break;
+                    //case "ContainerServiceGet":
+                    //    ExecuteContainerServiceGetMethod(argumentList);
+                    //    break;
+                    //case "ContainerServiceList":
+                    //    ExecuteContainerServiceListMethod(argumentList);
+                    //    break;
+                    //case "ContainerServiceListByResourceGroup":
+                    //    ExecuteContainerServiceListByResourceGroupMethod(argumentList);
+                    //    break;
+                    //case "ContainerServiceListByResourceGroupNext":
+                    //    ExecuteContainerServiceListByResourceGroupNextMethod(argumentList);
+                    //    break;
+                    //case "ContainerServiceListNext":
+                    //    ExecuteContainerServiceListNextMethod(argumentList);
+                    //    break;
                     case "DiskCreateOrUpdate":
                         ExecuteDiskCreateOrUpdateMethod(argumentList);
                         break;
@@ -270,12 +270,12 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                     case "LogAnalyticExportThrottledRequests":
                         ExecuteLogAnalyticExportThrottledRequestsMethod(argumentList);
                         break;
-                    case "ResourceSkuList":
-                        ExecuteResourceSkuListMethod(argumentList);
-                        break;
-                    case "ResourceSkuListNext":
-                        ExecuteResourceSkuListNextMethod(argumentList);
-                        break;
+                    //case "ResourceSkuList":
+                    //    ExecuteResourceSkuListMethod(argumentList);
+                    //    break;
+                    //case "ResourceSkuListNext":
+                    //    ExecuteResourceSkuListNextMethod(argumentList);
+                    //    break;
                     case "SnapshotCreateOrUpdate":
                         ExecuteSnapshotCreateOrUpdateMethod(argumentList);
                         break;
@@ -306,15 +306,15 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                     case "SnapshotUpdate":
                         ExecuteSnapshotUpdateMethod(argumentList);
                         break;
-                    case "VirtualMachineRunCommandGet":
-                        ExecuteVirtualMachineRunCommandGetMethod(argumentList);
-                        break;
-                    case "VirtualMachineRunCommandList":
-                        ExecuteVirtualMachineRunCommandListMethod(argumentList);
-                        break;
-                    case "VirtualMachineRunCommandListNext":
-                        ExecuteVirtualMachineRunCommandListNextMethod(argumentList);
-                        break;
+                    //case "VirtualMachineRunCommandGet":
+                    //    ExecuteVirtualMachineRunCommandGetMethod(argumentList);
+                    //    break;
+                    //case "VirtualMachineRunCommandList":
+                    //    ExecuteVirtualMachineRunCommandListMethod(argumentList);
+                    //    break;
+                    //case "VirtualMachineRunCommandListNext":
+                    //    ExecuteVirtualMachineRunCommandListNextMethod(argumentList);
+                    //    break;
                     case "VirtualMachineScaleSetRollingUpgradeCancel":
                         ExecuteVirtualMachineScaleSetRollingUpgradeCancelMethod(argumentList);
                         break;
@@ -471,9 +471,9 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                     case "VirtualMachineRestart":
                         ExecuteVirtualMachineRestartMethod(argumentList);
                         break;
-                    case "VirtualMachineRunCommand":
-                        ExecuteVirtualMachineRunCommandMethod(argumentList);
-                        break;
+                    //case "VirtualMachineRunCommand":
+                    //    ExecuteVirtualMachineRunCommandMethod(argumentList);
+                    //    break;
                     case "VirtualMachineStart":
                         ExecuteVirtualMachineStartMethod(argumentList);
                         break;
@@ -492,13 +492,13 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                 case "AvailabilitySetGet": return CreateAvailabilitySetGetDynamicParameters();
                 case "AvailabilitySetList": return CreateAvailabilitySetListDynamicParameters();
                 case "AvailabilitySetListAvailableSizes": return CreateAvailabilitySetListAvailableSizesDynamicParameters();
-                case "ContainerServiceCreateOrUpdate": return CreateContainerServiceCreateOrUpdateDynamicParameters();
-                case "ContainerServiceDelete": return CreateContainerServiceDeleteDynamicParameters();
-                case "ContainerServiceGet": return CreateContainerServiceGetDynamicParameters();
-                case "ContainerServiceList": return CreateContainerServiceListDynamicParameters();
-                case "ContainerServiceListByResourceGroup": return CreateContainerServiceListByResourceGroupDynamicParameters();
-                case "ContainerServiceListByResourceGroupNext": return CreateContainerServiceListByResourceGroupNextDynamicParameters();
-                case "ContainerServiceListNext": return CreateContainerServiceListNextDynamicParameters();
+                //case "ContainerServiceCreateOrUpdate": return CreateContainerServiceCreateOrUpdateDynamicParameters();
+                //case "ContainerServiceDelete": return CreateContainerServiceDeleteDynamicParameters();
+                //case "ContainerServiceGet": return CreateContainerServiceGetDynamicParameters();
+                //case "ContainerServiceList": return CreateContainerServiceListDynamicParameters();
+                //case "ContainerServiceListByResourceGroup": return CreateContainerServiceListByResourceGroupDynamicParameters();
+                //case "ContainerServiceListByResourceGroupNext": return CreateContainerServiceListByResourceGroupNextDynamicParameters();
+                //case "ContainerServiceListNext": return CreateContainerServiceListNextDynamicParameters();
                 case "DiskCreateOrUpdate": return CreateDiskCreateOrUpdateDynamicParameters();
                 case "DiskDelete": return CreateDiskDeleteDynamicParameters();
                 case "DiskGet": return CreateDiskGetDynamicParameters();
@@ -518,8 +518,8 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                 case "ImageListNext": return CreateImageListNextDynamicParameters();
                 case "LogAnalyticExportRequestRateByInterval": return CreateLogAnalyticExportRequestRateByIntervalDynamicParameters();
                 case "LogAnalyticExportThrottledRequests": return CreateLogAnalyticExportThrottledRequestsDynamicParameters();
-                case "ResourceSkuList": return CreateResourceSkuListDynamicParameters();
-                case "ResourceSkuListNext": return CreateResourceSkuListNextDynamicParameters();
+                //case "ResourceSkuList": return CreateResourceSkuListDynamicParameters();
+                //case "ResourceSkuListNext": return CreateResourceSkuListNextDynamicParameters();
                 case "SnapshotCreateOrUpdate": return CreateSnapshotCreateOrUpdateDynamicParameters();
                 case "SnapshotDelete": return CreateSnapshotDeleteDynamicParameters();
                 case "SnapshotGet": return CreateSnapshotGetDynamicParameters();
@@ -530,9 +530,9 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                 case "SnapshotListNext": return CreateSnapshotListNextDynamicParameters();
                 case "SnapshotRevokeAccess": return CreateSnapshotRevokeAccessDynamicParameters();
                 case "SnapshotUpdate": return CreateSnapshotUpdateDynamicParameters();
-                case "VirtualMachineRunCommandGet": return CreateVirtualMachineRunCommandGetDynamicParameters();
-                case "VirtualMachineRunCommandList": return CreateVirtualMachineRunCommandListDynamicParameters();
-                case "VirtualMachineRunCommandListNext": return CreateVirtualMachineRunCommandListNextDynamicParameters();
+                //case "VirtualMachineRunCommandGet": return CreateVirtualMachineRunCommandGetDynamicParameters();
+                //case "VirtualMachineRunCommandList": return CreateVirtualMachineRunCommandListDynamicParameters();
+                //case "VirtualMachineRunCommandListNext": return CreateVirtualMachineRunCommandListNextDynamicParameters();
                 case "VirtualMachineScaleSetRollingUpgradeCancel": return CreateVirtualMachineScaleSetRollingUpgradeCancelDynamicParameters();
                 case "VirtualMachineScaleSetRollingUpgradeGetLatest": return CreateVirtualMachineScaleSetRollingUpgradeGetLatestDynamicParameters();
                 case "VirtualMachineScaleSetRollingUpgradeStartOSUpgrade": return CreateVirtualMachineScaleSetRollingUpgradeStartOSUpgradeDynamicParameters();
@@ -585,7 +585,7 @@ namespace Microsoft.Azure.Commands.Compute.Automation
                 case "VirtualMachinePowerOff": return CreateVirtualMachinePowerOffDynamicParameters();
                 case "VirtualMachineRedeploy": return CreateVirtualMachineRedeployDynamicParameters();
                 case "VirtualMachineRestart": return CreateVirtualMachineRestartDynamicParameters();
-                case "VirtualMachineRunCommand": return CreateVirtualMachineRunCommandDynamicParameters();
+                //case "VirtualMachineRunCommand": return CreateVirtualMachineRunCommandDynamicParameters();
                 case "VirtualMachineStart": return CreateVirtualMachineStartDynamicParameters();
                 default: break;
             }

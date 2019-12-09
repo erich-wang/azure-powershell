@@ -23,7 +23,7 @@ using Microsoft.Azure.Management.Compute.Models;
 
 namespace Microsoft.Azure.Commands.Compute.Automation.Models
 {
-    public partial class PSRunCommandResult : RunCommandResult
-    {
-    }
+    //public partial class PSRunCommandResult : RunCommandResult
+    //{
+    //}
 }

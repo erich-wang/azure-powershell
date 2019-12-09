@@ -24,18 +24,18 @@ using System.Text.RegularExpressions;
 
 namespace Microsoft.Azure.Commands.Compute.Automation.Models
 {
-    public partial class PSContainerService : ContainerService
-    {
-        // Gets or sets the property of 'ResourceGroupName'
-        public string ResourceGroupName
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(Id)) return null;
-                Regex r = new Regex(@"(.*?)/resourcegroups/(?<rgname>\S+)/providers/(.*?)", RegexOptions.IgnoreCase);
-                Match m = r.Match(Id);
-                return m.Success ? m.Groups["rgname"].Value : null;
-            }
-        }
-    }
+    //public partial class PSContainerService : ContainerService
+    //{
+    //    // Gets or sets the property of 'ResourceGroupName'
+    //    public string ResourceGroupName
+    //    {
+    //        get
+    //        {
+    //            if (string.IsNullOrEmpty(Id)) return null;
+    //            Regex r = new Regex(@"(.*?)/resourcegroups/(?<rgname>\S+)/providers/(.*?)", RegexOptions.IgnoreCase);
+    //            Match m = r.Match(Id);
+    //            return m.Success ? m.Groups["rgname"].Value : null;
+    //        }
+    //    }
+    //}
 }

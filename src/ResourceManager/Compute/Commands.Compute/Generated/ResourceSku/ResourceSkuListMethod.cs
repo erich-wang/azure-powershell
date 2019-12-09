@@ -30,44 +30,44 @@ using System.Management.Automation;
 
 namespace Microsoft.Azure.Commands.Compute.Automation
 {
-    public partial class InvokeAzureComputeMethodCmdlet : ComputeAutomationBaseCmdlet
-    {
-        protected object CreateResourceSkuListDynamicParameters()
-        {
-            dynamicParameters = new RuntimeDefinedParameterDictionary();
-            var pArgumentList = new RuntimeDefinedParameter();
-            pArgumentList.Name = "ArgumentList";
-            pArgumentList.ParameterType = typeof(object[]);
-            pArgumentList.Attributes.Add(new ParameterAttribute
-            {
-                ParameterSetName = "InvokeByStaticParameters",
-                Position = 1,
-                Mandatory = true
-            });
-            pArgumentList.Attributes.Add(new AllowNullAttribute());
-            dynamicParameters.Add("ArgumentList", pArgumentList);
+    //public partial class InvokeAzureComputeMethodCmdlet : ComputeAutomationBaseCmdlet
+    //{
+    //    protected object CreateResourceSkuListDynamicParameters()
+    //    {
+    //        dynamicParameters = new RuntimeDefinedParameterDictionary();
+    //        var pArgumentList = new RuntimeDefinedParameter();
+    //        pArgumentList.Name = "ArgumentList";
+    //        pArgumentList.ParameterType = typeof(object[]);
+    //        pArgumentList.Attributes.Add(new ParameterAttribute
+    //        {
+    //            ParameterSetName = "InvokeByStaticParameters",
+    //            Position = 1,
+    //            Mandatory = true
+    //        });
+    //        pArgumentList.Attributes.Add(new AllowNullAttribute());
+    //        dynamicParameters.Add("ArgumentList", pArgumentList);
 
-            return dynamicParameters;
-        }
+    //        return dynamicParameters;
+    //    }
 
-        protected void ExecuteResourceSkuListMethod(object[] invokeMethodInputParameters)
-        {
+    //    protected void ExecuteResourceSkuListMethod(object[] invokeMethodInputParameters)
+    //    {
 
-            var result = ResourceSkusClient.List();
-            var resultList = result.ToList();
-            var nextPageLink = result.NextPageLink;
-            while (!string.IsNullOrEmpty(nextPageLink))
-            {
-                var pageResult = ResourceSkusClient.ListNext(nextPageLink);
-                foreach (var pageItem in pageResult)
-                {
-                    resultList.Add(pageItem);
-                }
-                nextPageLink = pageResult.NextPageLink;
-            }
-            WriteObject(resultList, true);
-        }
-    }
+    //        var result = ResourceSkusClient.List();
+    //        var resultList = result.ToList();
+    //        var nextPageLink = result.NextPageLink;
+    //        while (!string.IsNullOrEmpty(nextPageLink))
+    //        {
+    //            var pageResult = ResourceSkusClient.ListNext(nextPageLink);
+    //            foreach (var pageItem in pageResult)
+    //            {
+    //                resultList.Add(pageItem);
+    //            }
+    //            nextPageLink = pageResult.NextPageLink;
+    //        }
+    //        WriteObject(resultList, true);
+    //    }
+    //}
 
     public partial class NewAzureComputeArgumentListCmdlet : ComputeAutomationBaseCmdlet
     {
@@ -77,35 +77,35 @@ namespace Microsoft.Azure.Commands.Compute.Automation
         }
     }
 
-    [Cmdlet(VerbsCommon.Get, "AzureRmComputeResourceSku", DefaultParameterSetName = "DefaultParameter")]
-    [OutputType(typeof(PSResourceSku))]
-    public partial class GetAzureRmComputeResourceSku : ComputeAutomationBaseCmdlet
-    {
-        public override void ExecuteCmdlet()
-        {
-            ExecuteClientAction(() =>
-            {
+    //[Cmdlet(VerbsCommon.Get, "AzureRmComputeResourceSku", DefaultParameterSetName = "DefaultParameter")]
+    //[OutputType(typeof(PSResourceSku))]
+    //public partial class GetAzureRmComputeResourceSku : ComputeAutomationBaseCmdlet
+    //{
+    //    public override void ExecuteCmdlet()
+    //    {
+    //        ExecuteClientAction(() =>
+    //        {
 
-                var result = ResourceSkusClient.List();
-                var resultList = result.ToList();
-                var nextPageLink = result.NextPageLink;
-                while (!string.IsNullOrEmpty(nextPageLink))
-                {
-                    var pageResult = ResourceSkusClient.ListNext(nextPageLink);
-                    foreach (var pageItem in pageResult)
-                    {
-                        resultList.Add(pageItem);
-                    }
-                    nextPageLink = pageResult.NextPageLink;
-                }
-                var psObject = new List<PSResourceSku>();
-                foreach (var r in resultList)
-                {
-                    psObject.Add(ComputeAutomationAutoMapperProfile.Mapper.Map<ResourceSku, PSResourceSku>(r));
-                }
-                WriteObject(psObject, true);
-            });
-        }
+    //            var result = ResourceSkusClient.List();
+    //            var resultList = result.ToList();
+    //            var nextPageLink = result.NextPageLink;
+    //            while (!string.IsNullOrEmpty(nextPageLink))
+    //            {
+    //                var pageResult = ResourceSkusClient.ListNext(nextPageLink);
+    //                foreach (var pageItem in pageResult)
+    //                {
+    //                    resultList.Add(pageItem);
+    //                }
+    //                nextPageLink = pageResult.NextPageLink;
+    //            }
+    //            var psObject = new List<PSResourceSku>();
+    //            foreach (var r in resultList)
+    //            {
+    //                psObject.Add(ComputeAutomationAutoMapperProfile.Mapper.Map<ResourceSku, PSResourceSku>(r));
+    //            }
+    //            WriteObject(psObject, true);
+    //        });
+    //    }
 
-    }
+    //}
 }

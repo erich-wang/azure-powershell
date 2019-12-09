@@ -21,6 +21,8 @@ using System.Linq;
 using System.Security;
 using Microsoft.Azure.Commands.Common.Authentication.Properties;
 using System.Threading.Tasks;
+using Azure.Core;
+using Microsoft.Azure.Commands.Common.Authentication.Authentication;
 
 namespace Microsoft.Azure.Commands.Common.Authentication.Factories
 {
@@ -534,5 +536,37 @@ namespace Microsoft.Azure.Commands.Common.Authentication.Factories
             return result;
         }
 
+        public AccessToken GetAzureCoreAccessToken(IAzureContext context, TokenRequestContext requestContext, string targetEndpoint)
+        {
+            string tenant = null;
+
+            if (context.Subscription != null && context.Account != null)
+            {
+                tenant = context.Subscription.GetPropertyAsArray(AzureSubscription.Property.Tenants)
+                    .Intersect(context.Account.GetPropertyAsArray(AzureAccount.Property.Tenants))
+                    .FirstOrDefault();
+            }
+
+            if (tenant == null && context.Tenant != null && new Guid(context.Tenant.Id) != Guid.Empty)
+            {
+                tenant = context.Tenant.Id.ToString();
+            }
+
+            if (tenant == null)
+            {
+                throw new ArgumentException("Resources.NoTenantInContext");
+            }
+
+            //TODO: refer to ContextAdapter::AuthorizeRequest
+            var token = Authenticate(context.Account, context.Environment, tenant, null, ShowDialog.Never, null,
+                context.Environment.GetTokenAudience(targetEndpoint));
+
+            return new AccessToken(token.AccessToken, ((IRenewableToken)token).ExpiresOn);
+        }
+
+        public TokenCredential GetAzureCoreTokenCredential(IAzureContext context, string endpoint)
+        {
+            return new AzureCoreTokenCredential(context, endpoint);
+        }
     }
 }

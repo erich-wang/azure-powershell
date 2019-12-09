@@ -15,6 +15,7 @@
 using Microsoft.Azure.Commands.KeyVault.Models;
 using Microsoft.Azure.Commands.ResourceManager.Common.ArgumentCompleters;
 using Microsoft.Azure.Management.Internal.Resources.Utilities.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
@@ -192,56 +193,60 @@ namespace Microsoft.Azure.Commands.KeyVault
 
         public override void ExecuteCmdlet()
         {
-            PSKeyVaultSecret secret;
+            var client = new KeyClientAdapter(new Uri($"https://{VaultName}.vault.azure.net/"), DefaultContext, this);
+            var result = client.GetSecret(Name, Version);
+            WriteObject(result);
 
-            if (InputObject != null)
-            {
-                VaultName = InputObject.VaultName.ToString();
-            }
-            else if (!string.IsNullOrEmpty(ResourceId))
-            {
-                var parsedResourceId = new ResourceIdentifier(ResourceId);
-                VaultName = parsedResourceId.ResourceName;
-            }
+            //PSKeyVaultSecret secret;
 
-            if (!string.IsNullOrEmpty(Version))
-            {
-                secret = DataServiceClient.GetSecret(VaultName, Name, Version);
-                WriteObject(secret);
-            }
-            else if (IncludeVersions)
-            {
-                secret = DataServiceClient.GetSecret(VaultName, Name, string.Empty);
-                if (secret != null)
-                {
-                    WriteObject(new PSKeyVaultSecretIdentityItem(secret));
-                    GetAndWriteSecretVersions(VaultName, Name, secret.Version);
-                }
-            }
-            else if (InRemovedState)
-            {
-                if (string.IsNullOrEmpty(Name) || WildcardPattern.ContainsWildcardCharacters(Name))
-                {
-                    GetAndWriteDeletedSecrets(VaultName, Name);
-                }
-                else
-                {
-                    PSDeletedKeyVaultSecret deletedSecret = DataServiceClient.GetDeletedSecret(VaultName, Name);
-                    WriteObject(deletedSecret);
-                }
-            }
-            else
-            {
-                if (string.IsNullOrEmpty(Name) || WildcardPattern.ContainsWildcardCharacters(Name))
-                {
-                    GetAndWriteSecrets(VaultName, Name);
-                }
-                else
-                {
-                    secret = DataServiceClient.GetSecret(VaultName, Name, string.Empty);
-                    WriteObject(secret);
-                }
-            }
+            //if (InputObject != null)
+            //{
+            //    VaultName = InputObject.VaultName.ToString();
+            //}
+            //else if (!string.IsNullOrEmpty(ResourceId))
+            //{
+            //    var parsedResourceId = new ResourceIdentifier(ResourceId);
+            //    VaultName = parsedResourceId.ResourceName;
+            //}
+
+            //if (!string.IsNullOrEmpty(Version))
+            //{
+            //    secret = DataServiceClient.GetSecret(VaultName, Name, Version);
+            //    WriteObject(secret);
+            //}
+            //else if (IncludeVersions)
+            //{
+            //    secret = DataServiceClient.GetSecret(VaultName, Name, string.Empty);
+            //    if (secret != null)
+            //    {
+            //        WriteObject(new PSKeyVaultSecretIdentityItem(secret));
+            //        GetAndWriteSecretVersions(VaultName, Name, secret.Version);
+            //    }
+            //}
+            //else if (InRemovedState)
+            //{
+            //    if (string.IsNullOrEmpty(Name) || WildcardPattern.ContainsWildcardCharacters(Name))
+            //    {
+            //        GetAndWriteDeletedSecrets(VaultName, Name);
+            //    }
+            //    else
+            //    {
+            //        PSDeletedKeyVaultSecret deletedSecret = DataServiceClient.GetDeletedSecret(VaultName, Name);
+            //        WriteObject(deletedSecret);
+            //    }
+            //}
+            //else
+            //{
+            //    if (string.IsNullOrEmpty(Name) || WildcardPattern.ContainsWildcardCharacters(Name))
+            //    {
+            //        GetAndWriteSecrets(VaultName, Name);
+            //    }
+            //    else
+            //    {
+            //        secret = DataServiceClient.GetSecret(VaultName, Name, string.Empty);
+            //        WriteObject(secret);
+            //    }
+            //}
         }
 
         private void GetAndWriteDeletedSecrets(string vaultName, string name) =>

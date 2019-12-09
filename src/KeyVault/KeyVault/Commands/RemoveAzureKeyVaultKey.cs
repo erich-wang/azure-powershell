@@ -17,6 +17,7 @@ using System.Globalization;
 using System.Management.Automation;
 using Microsoft.Azure.Commands.KeyVault.Properties;
 using Microsoft.Azure.Commands.ResourceManager.Common.ArgumentCompleters;
+using System;
 
 namespace Microsoft.Azure.Commands.KeyVault
 {

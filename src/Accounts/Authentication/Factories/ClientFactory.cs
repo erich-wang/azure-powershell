@@ -12,6 +12,7 @@
 // limitations under the License.
 // ----------------------------------------------------------------------------------
 
+using Azure.Core;
 using Hyak.Common;
 using Microsoft.Azure.Commands.Common.Authentication.Abstractions;
 #if NETSTANDARD
@@ -433,6 +434,12 @@ namespace Microsoft.Azure.Commands.Common.Authentication.Factories
                     _userAgents.TryRemove(agent, out value);
                 }
             }
+        }
+
+        public TClient CreateDataClient<TClient>(IAzureContext context, ClientOptions option, string endpoint)
+        {
+            //TODO: 
+            throw new NotImplementedException();
         }
     }
 }

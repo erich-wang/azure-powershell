@@ -12,9 +12,11 @@
 // limitations under the License.
 // ----------------------------------------------------------------------------------
 
+using Azure.Security.KeyVault.Secrets;
 using Microsoft.Azure.Commands.KeyVault.Models;
 using Microsoft.Azure.Commands.KeyVault.Properties;
 using Microsoft.Azure.Commands.ResourceManager.Common.ArgumentCompleters;
+using System;
 using System.Globalization;
 using System.Management.Automation;
 
@@ -94,24 +96,26 @@ namespace Microsoft.Azure.Commands.KeyVault
                 Name = InputObject.Name;
             }
 
-            if(InRemovedState.IsPresent)
-            {
-                ConfirmAction(
-                    Force.IsPresent,
-                    string.Format(
-                        CultureInfo.InvariantCulture,
-                        Resources.RemoveDeletedSecretWarning,
-                        Name),
-                    string.Format(
-                        CultureInfo.InvariantCulture,
-                        Resources.RemoveDeletedSecretWhatIfMessage,
-                        Name),
-                    Name,
-                   () => { DataServiceClient.PurgeSecret(VaultName, Name); });
-                return;
-            }
+            var client = new KeyClientAdapter(new Uri($"https://{VaultName}.vault.azure.net/"), DefaultContext, this);
 
-            PSDeletedKeyVaultSecret deletedSecret = null;
+            //if (InRemovedState.IsPresent)
+            //{
+            //    ConfirmAction(
+            //        Force.IsPresent,
+            //        string.Format(
+            //            CultureInfo.InvariantCulture,
+            //            Resources.RemoveDeletedSecretWarning,
+            //            Name),
+            //        string.Format(
+            //            CultureInfo.InvariantCulture,
+            //            Resources.RemoveDeletedSecretWhatIfMessage,
+            //            Name),
+            //        Name,
+            //       () => { DataServiceClient.PurgeSecret(VaultName, Name); });
+            //    return;
+            //}
+
+            DeletedSecret result = null;
             ConfirmAction(
                 Force.IsPresent,
                 string.Format(
@@ -123,11 +127,11 @@ namespace Microsoft.Azure.Commands.KeyVault
                     Resources.RemoveSecretWhatIfMessage,
                     Name),
                 Name,
-               () => { deletedSecret = DataServiceClient.DeleteSecret(VaultName, Name); });
+               () => { result = client.StartDeleteSecret(Name); });
 
             if (PassThru)
             {
-                WriteObject(deletedSecret);
+                WriteObject(result);
             }
         }
     }

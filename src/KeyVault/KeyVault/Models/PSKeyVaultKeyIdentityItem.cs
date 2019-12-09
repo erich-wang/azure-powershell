@@ -14,6 +14,7 @@
 
 using System;
 using System.Collections;
+using Azure.Security.KeyVault.Keys;
 using KeyVaultProperties = Microsoft.Azure.Commands.KeyVault.Properties;
 
 namespace Microsoft.Azure.Commands.KeyVault.Models
@@ -60,7 +61,6 @@ namespace Microsoft.Azure.Commands.KeyVault.Models
             RecoveryLevel = keyBundle.Attributes.RecoveryLevel;
             Tags = keyBundle.Attributes.Tags;
         }
-
         public bool? Enabled { get; set; }
 
         public DateTime? Expires { get; set; }

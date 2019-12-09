@@ -125,13 +125,17 @@ namespace Microsoft.Azure.Commands.KeyVault
 
             if (ShouldProcess(Name, Properties.Resources.SetSecret))
             {
-                var secret = DataServiceClient.SetSecret(
-                VaultName,
-                Name,
-                SecretValue,
-                new PSKeyVaultSecretAttributes(!Disable.IsPresent, Expires, NotBefore, ContentType, 
-                    TagsConversionHelper.CreateTagHashtable(TagsConversionHelper.CreateTagDictionary(this.Tag, true))));
-                WriteObject(secret);
+                var client = new KeyClientAdapter(new Uri($"https://{VaultName}.vault.azure.net/"), DefaultContext, this);
+                var result = client.SetSecret(Name, SecretValue);
+                WriteObject(result);
+
+                //var secret = DataServiceClient.SetSecret(
+                //VaultName,
+                //Name,
+                //SecretValue,
+                //new PSKeyVaultSecretAttributes(!Disable.IsPresent, Expires, NotBefore, ContentType, 
+                //    TagsConversionHelper.CreateTagHashtable(TagsConversionHelper.CreateTagDictionary(this.Tag, true))));
+                //WriteObject(secret);
             }
         }
     }

@@ -294,4 +294,37 @@
   <data name="UsingDefaultLocation" xml:space="preserve">
     <value>Resource group location is invalid, using default location {0}.</value>
   </data>
+  <data name="AgentPoolAlreadyExistsConfirmAction" xml:space="preserve">
+    <value>Agent pool already exists, confirm action.</value>
+  </data>
+  <data name="AgentPoolDoesNotExist" xml:space="preserve">
+    <value>Agent pool doesn't exist.</value>
+  </data>
+  <data name="AgentPoolExists" xml:space="preserve">
+    <value>Agent pool exists: {0}.</value>
+  </data>
+  <data name="AgentPoolIsNew" xml:space="preserve">
+    <value>Agent pool is new.</value>
+  </data>
+  <data name="CreatingClusterAgentPool" xml:space="preserve">
+    <value>Creating a new cluster agent pool.</value>
+  </data>
+  <data name="DoYouWantToCreateClusterAgentPool" xml:space="preserve">
+    <value>Do you want to craete a new agent pool?</value>
+  </data>
+  <data name="DoYouWantToDeleteTheAgentPool" xml:space="preserve">
+    <value>Do you want to delete the agent pool?</value>
+  </data>
+  <data name="RemovingTheAgentPool" xml:space="preserve">
+    <value>Removing the agent pool.</value>
+  </data>
+  <data name="UpdateAgentPool" xml:space="preserve">
+    <value>Update the agent pool.</value>
+  </data>
+  <data name="SpecifiedAgentPoolDoesNotExist" xml:space="preserve">
+    <value>You must specify one existing agent pool name to 'NodeName' for updating agent pool properties.</value>
+  </data>
+  <data name="UsingAgentPoolFromPipeline" xml:space="preserve">
+    <value>Using agent pool from pipeline.</value>
+  </data>
 </root>

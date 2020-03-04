@@ -1,9 +1,5 @@
-using System.Management.Automation;
-
 namespace Microsoft.Azure.Commands.Aks.Models
 {
-    using Microsoft.Rest.Azure;
-    using Newtonsoft.Json;
     using System.Collections.Generic;
 
     /// <summary>
@@ -36,31 +32,26 @@ namespace Microsoft.Azure.Commands.Aks.Models
         /// <summary>
         /// Gets resource Id
         /// </summary>
-        [JsonProperty(PropertyName = "id")]
         public string Id { get; private set; }
 
         /// <summary>
         /// Gets resource name
         /// </summary>
-        [JsonProperty(PropertyName = "name")]
         public string Name { get; private set; }
 
         /// <summary>
         /// Gets resource type
         /// </summary>
-        [JsonProperty(PropertyName = "type")]
         public string Type { get; private set; }
 
         /// <summary>
         /// Gets or sets resource location
         /// </summary>
-        [JsonProperty(PropertyName = "location")]
         public string Location { get; set; }
 
         /// <summary>
         /// Gets or sets resource tags
         /// </summary>
-        [JsonProperty(PropertyName = "tags")]
         public IDictionary<string, string> Tags { get; set; }
     }
 }

@@ -38,7 +38,7 @@ using Microsoft.WindowsAzure.Commands.Utilities.Common;
 
 namespace Microsoft.Azure.Commands.Aks
 {
-    public abstract class CreateOrUpdateKubeBase : KubeCmdletBase
+    public abstract class SetKubeBase : KubeCmdletBase
     {
         protected const string DefaultParamSet = "defaultParameterSet";
         protected const string SpParamSet = "servicePrincipalParameterSet";
@@ -94,7 +94,7 @@ namespace Microsoft.Azure.Commands.Aks
         public int NodeMaxCount { get; set; }
 
         [Parameter(Mandatory = false, HelpMessage = "Whether to enable auto-scaler")]
-        public SwitchParameter EnableNodeAutoScaling { get; set; }
+        public SwitchParameter NodeEnableAutoScaling { get; set; }
 
         [Parameter(Mandatory = false, HelpMessage = "The default number of nodes for the node pools.")]
         public int NodeCount { get; set; } = 3;
@@ -117,56 +117,7 @@ namespace Microsoft.Azure.Commands.Aks
         [Parameter(Mandatory = false)]
         public Hashtable Tag { get; set; }
 
-        protected virtual ManagedCluster BuildNewCluster()
-        {
-            BeforeBuildNewCluster();
-
-            var defaultAgentPoolProfile = new ManagedClusterAgentPoolProfile(
-                name: NodeName ?? "default",
-                count: NodeCount,
-                vmSize: NodeVmSize,
-                osDiskSizeGB: NodeOsDiskSize);
-
-            if (this.IsParameterBound(c => c.NodeMinCount))
-            {
-                defaultAgentPoolProfile.MinCount = NodeMinCount;
-            }
-            if (this.IsParameterBound(c => c.NodeMaxCount))
-            {
-                defaultAgentPoolProfile.MaxCount = NodeMaxCount;
-            }
-            if (EnableNodeAutoScaling.IsPresent)
-            {
-                defaultAgentPoolProfile.EnableAutoScaling = EnableNodeAutoScaling.ToBool();
-            }
-
-            var pubKey =
-                new List<ContainerServiceSshPublicKey> { new ContainerServiceSshPublicKey(SshKeyValue) };
-
-            var linuxProfile =
-                new ContainerServiceLinuxProfile(AdminUserName,
-                    new ContainerServiceSshConfiguration(pubKey));
-
-            var acsServicePrincipal = EnsureServicePrincipal(ClientIdAndSecret?.UserName, ClientIdAndSecret?.Password?.ToString());
-
-            var spProfile = new ManagedClusterServicePrincipalProfile(
-                acsServicePrincipal.SpId,
-                acsServicePrincipal.ClientSecret);
-
-            WriteVerbose(string.Format(Resources.DeployingYourManagedKubeCluster, AcsSpFilePath));
-            var managedCluster = new ManagedCluster(
-                Location,
-                name: Name,
-                tags: TagsConversionHelper.CreateTagDictionary(Tag, true),
-                dnsPrefix: DnsNamePrefix,
-                kubernetesVersion: KubernetesVersion,
-                agentPoolProfiles: new List<ManagedClusterAgentPoolProfile> { defaultAgentPoolProfile },
-                linuxProfile: linuxProfile,
-                servicePrincipalProfile: spProfile);
-            return managedCluster;
-        }
-
-        protected void BeforeBuildNewCluster()
+        protected ManagedCluster BuildNewCluster()
         {
             if (!string.IsNullOrEmpty(ResourceGroupName) && string.IsNullOrEmpty(Location))
             {
@@ -205,6 +156,50 @@ namespace Microsoft.Azure.Commands.Aks
 
             WriteVerbose(string.Format(Resources.UsingDnsNamePrefix, DnsNamePrefix));
             SshKeyValue = GetSshKey(SshKeyValue);
+
+            var defaultAgentPoolProfile = new ManagedClusterAgentPoolProfile(
+                name: NodeName ?? "default",
+                count: NodeCount,
+                vmSize: NodeVmSize,
+                osDiskSizeGB: NodeOsDiskSize);
+
+            if(this.IsParameterBound(c => c.NodeMinCount))
+            {
+                defaultAgentPoolProfile.MinCount = NodeMinCount;
+            }
+            if(this.IsParameterBound(c => c.NodeMaxCount))
+            {
+                defaultAgentPoolProfile.MaxCount = NodeMaxCount;
+            }
+            if(NodeEnableAutoScaling.IsPresent)
+            {
+                defaultAgentPoolProfile.EnableAutoScaling = NodeEnableAutoScaling.ToBool();
+            }
+
+            var pubKey =
+                new List<ContainerServiceSshPublicKey> { new ContainerServiceSshPublicKey(SshKeyValue) };
+
+            var linuxProfile =
+                new ContainerServiceLinuxProfile(AdminUserName,
+                    new ContainerServiceSshConfiguration(pubKey));
+
+            var acsServicePrincipal = EnsureServicePrincipal(ClientIdAndSecret?.UserName, ClientIdAndSecret?.Password?.ToString());
+
+            var spProfile = new ManagedClusterServicePrincipalProfile(
+                acsServicePrincipal.SpId,
+                acsServicePrincipal.ClientSecret);
+
+            WriteVerbose(string.Format(Resources.DeployingYourManagedKubeCluster, AcsSpFilePath));
+            var managedCluster = new ManagedCluster(
+                Location,
+                name: Name,
+                tags: TagsConversionHelper.CreateTagDictionary(Tag, true),
+                dnsPrefix: DnsNamePrefix,
+                kubernetesVersion: KubernetesVersion,
+                agentPoolProfiles: new List<ManagedClusterAgentPoolProfile> { defaultAgentPoolProfile },
+                linuxProfile: linuxProfile,
+                servicePrincipalProfile: spProfile);
+            return managedCluster;
         }
 
         /// <summary>

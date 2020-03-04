@@ -19,7 +19,7 @@ namespace Microsoft.Azure.Commands.Aks.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -66,6 +66,42 @@ namespace Microsoft.Azure.Commands.Aks.Properties {
         internal static string AddRoleAssignment {
             get {
                 return ResourceManager.GetString("AddRoleAssignment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Agent pool already exists, confirm action..
+        /// </summary>
+        internal static string AgentPoolAlreadyExistsConfirmAction {
+            get {
+                return ResourceManager.GetString("AgentPoolAlreadyExistsConfirmAction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Agent pool doesn&apos;t exist..
+        /// </summary>
+        internal static string AgentPoolDoesNotExist {
+            get {
+                return ResourceManager.GetString("AgentPoolDoesNotExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Agent pool exists: {0}..
+        /// </summary>
+        internal static string AgentPoolExists {
+            get {
+                return ResourceManager.GetString("AgentPoolExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Agent pool is new..
+        /// </summary>
+        internal static string AgentPoolIsNew {
+            get {
+                return ResourceManager.GetString("AgentPoolIsNew", resourceCulture);
             }
         }
         
@@ -142,6 +178,15 @@ namespace Microsoft.Azure.Commands.Aks.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Creating a new cluster agent pool..
+        /// </summary>
+        internal static string CreatingClusterAgentPool {
+            get {
+                return ResourceManager.GetString("CreatingClusterAgentPool", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Deploying your managed Kubernetes cluster..
         /// </summary>
         internal static string DeployingYourManagedKubeCluster {
@@ -165,6 +210,24 @@ namespace Microsoft.Azure.Commands.Aks.Properties {
         internal static string DoYouWantToCreateANewManagedKubernetesCluster {
             get {
                 return ResourceManager.GetString("DoYouWantToCreateANewManagedKubernetesCluster", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you want to craete a new agent pool?.
+        /// </summary>
+        internal static string DoYouWantToCreateClusterAgentPool {
+            get {
+                return ResourceManager.GetString("DoYouWantToCreateClusterAgentPool", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you want to delete the agent pool?.
+        /// </summary>
+        internal static string DoYouWantToDeleteTheAgentPool {
+            get {
+                return ResourceManager.GetString("DoYouWantToDeleteTheAgentPool", resourceCulture);
             }
         }
         
@@ -322,6 +385,15 @@ namespace Microsoft.Azure.Commands.Aks.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Removing the agent pool..
+        /// </summary>
+        internal static string RemovingTheAgentPool {
+            get {
+                return ResourceManager.GetString("RemovingTheAgentPool", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Removing the managed Kubernetes cluster..
         /// </summary>
         internal static string RemovingTheManagedKubernetesCluster {
@@ -372,6 +444,15 @@ namespace Microsoft.Azure.Commands.Aks.Properties {
         internal static string SettingUpBrowserPop {
             get {
                 return ResourceManager.GetString("SettingUpBrowserPop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must specify one existing agent pool name to &apos;NodeName&apos; for updating agent pool properties..
+        /// </summary>
+        internal static string SpecifiedAgentPoolDoesNotExist {
+            get {
+                return ResourceManager.GetString("SpecifiedAgentPoolDoesNotExist", resourceCulture);
             }
         }
         
@@ -444,6 +525,15 @@ namespace Microsoft.Azure.Commands.Aks.Properties {
         internal static string StoppingProcessWithId {
             get {
                 return ResourceManager.GetString("StoppingProcessWithId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update the agent pool..
+        /// </summary>
+        internal static string UpdateAgentPool {
+            get {
+                return ResourceManager.GetString("UpdateAgentPool", resourceCulture);
             }
         }
         
@@ -543,6 +633,15 @@ namespace Microsoft.Azure.Commands.Aks.Properties {
         internal static string UpdatingYourManagedKubernetesCluster {
             get {
                 return ResourceManager.GetString("UpdatingYourManagedKubernetesCluster", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Using agent pool from pipeline..
+        /// </summary>
+        internal static string UsingAgentPoolFromPipeline {
+            get {
+                return ResourceManager.GetString("UsingAgentPoolFromPipeline", resourceCulture);
             }
         }
         

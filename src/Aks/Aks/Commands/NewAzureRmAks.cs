@@ -14,7 +14,7 @@
 
 using System;
 using System.Management.Automation;
-using Microsoft.Azure.Commands.Aks.Generated.Version2017_08_31;
+using Microsoft.Azure.Management.ContainerService;
 using Microsoft.Azure.Commands.Aks.Models;
 using Microsoft.Azure.Commands.Aks.Properties;
 
@@ -22,7 +22,7 @@ namespace Microsoft.Azure.Commands.Aks
 {
     [Cmdlet("New", ResourceManager.Common.AzureRMConstants.AzureRMPrefix + "Aks", DefaultParameterSetName = DefaultParamSet, SupportsShouldProcess = true)]
     [OutputType(typeof(PSKubernetesCluster))]
-    public class NewAzureRmAks : CreateOrUpdateKubeBase
+    public class NewAzureRmAks : NewKubeBase
     {
         [Parameter(Mandatory = false, HelpMessage = "Create cluster even if it already exists")]
         public SwitchParameter Force { get; set; }

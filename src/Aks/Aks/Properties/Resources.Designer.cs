@@ -61,6 +61,15 @@ namespace Microsoft.Azure.Commands.Aks.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please add {0} to your search PATH so the {1} can be found..
+        /// </summary>
+        internal static string AddDirectoryToPath {
+            get {
+                return ResourceManager.GetString("AddDirectoryToPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Role Assignment.
         /// </summary>
         internal static string AddRoleAssignment {
@@ -205,6 +214,15 @@ namespace Microsoft.Azure.Commands.Aks.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Downloading kubectl from internet.
+        /// </summary>
+        internal static string DownloadingKubectlFromWeb {
+            get {
+                return ResourceManager.GetString("DownloadingKubectlFromWeb", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Do you want to create a new managed Kubernetes cluster?.
         /// </summary>
         internal static string DoYouWantToCreateANewManagedKubernetesCluster {
@@ -246,6 +264,15 @@ namespace Microsoft.Azure.Commands.Aks.Properties {
         internal static string DoYouWantToImportTheKubernetesConfig {
             get {
                 return ResourceManager.GetString("DoYouWantToImportTheKubernetesConfig", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you want to overwrite the existing {0}?.
+        /// </summary>
+        internal static string DoYouWantToOverwriteExistingFile {
+            get {
+                return ResourceManager.GetString("DoYouWantToOverwriteExistingFile", resourceCulture);
             }
         }
         
@@ -331,11 +358,29 @@ namespace Microsoft.Azure.Commands.Aks.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There&apos;s no kubectl available in the mirror site for OSX..
+        /// </summary>
+        internal static string NoKubectlForOsxOnMirror {
+            get {
+                return ResourceManager.GetString("NoKubectlForOsxOnMirror", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No Service Principal found in {0} for this subscription. Creating a new Service Principal..
         /// </summary>
         internal static string NoServicePrincipalFoundCreatingANewServicePrincipal {
             get {
                 return ResourceManager.GetString("NoServicePrincipalFoundCreatingANewServicePrincipal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sorry, this cmdlet is not supported in current OS..
+        /// </summary>
+        internal static string NotSupportOnThisOs {
+            get {
+                return ResourceManager.GetString("NotSupportOnThisOs", resourceCulture);
             }
         }
         

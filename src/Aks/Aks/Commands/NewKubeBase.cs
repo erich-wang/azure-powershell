@@ -139,11 +139,11 @@ namespace Microsoft.Azure.Commands.Aks
 
             if(EnableRbac.IsPresent)
             {
-                managedCluster.EnableRBAC = EnableRbac.ToBool();
+                managedCluster.EnableRBAC = EnableRbac;
             }
             if(EnablePodSecurityPolicy.IsPresent)
             {
-                managedCluster.EnablePodSecurityPolicy = EnablePodSecurityPolicy.ToBool();
+                managedCluster.EnablePodSecurityPolicy = EnablePodSecurityPolicy;
             }
 
             return managedCluster;

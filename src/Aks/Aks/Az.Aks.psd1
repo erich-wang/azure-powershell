@@ -77,7 +77,7 @@ FunctionsToExport = @()
 CmdletsToExport = 'Get-AzAks', 'New-AzAks', 'Remove-AzAks', 'Import-AzAksCredential', 
                'Start-AzAksDashboard', 'Stop-AzAksDashboard', 'Set-AzAks', 
 			   'New-AzAksAgentPool', 'Update-AzAksAgentPool', 'Remove-AzAksAgentPool',
-			   'Get-AzAksAgentPool'
+			   'Get-AzAksAgentPool', "Install-AzAksKubectl", 'Get-AzAksVersion'
 
 # Variables to export from this module
 # VariablesToExport = @()

@@ -327,4 +327,19 @@
   <data name="UsingAgentPoolFromPipeline" xml:space="preserve">
     <value>Using agent pool from pipeline.</value>
   </data>
+  <data name="AddDirectoryToPath" xml:space="preserve">
+    <value>Please add {0} to your search PATH so the {1} can be found.</value>
+  </data>
+  <data name="DownloadingKubectlFromWeb" xml:space="preserve">
+    <value>Downloading kubectl from internet</value>
+  </data>
+  <data name="DoYouWantToOverwriteExistingFile" xml:space="preserve">
+    <value>Do you want to overwrite the existing {0}?</value>
+  </data>
+  <data name="NoKubectlForOsxOnMirror" xml:space="preserve">
+    <value>There's no kubectl available in the mirror site for OSX.</value>
+  </data>
+  <data name="NotSupportOnThisOs" xml:space="preserve">
+    <value>Sorry, this cmdlet is not supported in current OS.</value>
+  </data>
 </root>

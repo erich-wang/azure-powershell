@@ -35,6 +35,7 @@ using Newtonsoft.Json;
 using Microsoft.Azure.Commands.Common.Authentication;
 using Microsoft.Azure.Commands.Aks.Properties;
 using Microsoft.WindowsAzure.Commands.Utilities.Common;
+using Microsoft.Rest.Azure.OData;
 
 namespace Microsoft.Azure.Commands.Aks
 {
@@ -297,7 +298,43 @@ namespace Microsoft.Azure.Commands.Aks
             }
 
             AddSubscriptionRoleAssignment("Contributor", sp.ObjectId);
-            return new AcsServicePrincipal { SpId = app.AppId, ClientSecret = clientSecret };
+            return new AcsServicePrincipal { SpId = app.AppId, ClientSecret = clientSecret, ObjectId = app.ObjectId };
+        }
+
+        protected void AddAcrRoleAssignment(string acrResourceId, AcsServicePrincipal acsServicePrincipal)
+        {
+            var scope = acrResourceId;
+            var roleId = GetRoleId("acrpull", scope);
+            var spObjectId = acsServicePrincipal.ObjectId;
+            if(spObjectId == null)
+            {
+                try
+                {
+                    //var odataQuery = new ODataQuery<ServicePrincipal>(s => 
+                    //s.AppId.Equals(acsServicePrincipal.SpId, StringComparison.OrdinalIgnoreCase));
+
+                    var odataQuery = new ODataQuery<ServicePrincipal>(
+                    string.Format("$filter=AppId eq '{0}')", acsServicePrincipal.SpId));
+
+                    var servicePrincipal = GraphClient.ServicePrincipals.List(odataQuery).First();
+                    spObjectId = servicePrincipal.ObjectId;
+                }
+                catch(Exception ex)
+                {
+                    throw new CmdletInvocationException(Resources.CouldNotFindObjectIdForServicePrincipal, ex);
+                }
+            }
+            var success = RetryAction(() =>
+                AuthClient.RoleAssignments.Create(scope, Guid.NewGuid().ToString(), new RoleAssignmentCreateParameters()
+                {
+                    Properties = new RoleAssignmentProperties(roleId, spObjectId)
+                }), Resources.AddRoleAssignment);
+
+            if (!success)
+            {
+                throw new CmdletInvocationException(
+                    Resources.CouldNotAddAcrRoleAssignment);
+            }
         }
 
         protected bool Exists()

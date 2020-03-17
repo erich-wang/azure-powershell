@@ -151,11 +151,29 @@ namespace Microsoft.Azure.Commands.Aks.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Could not add &apos;acrpull&apos; role assignment, please make sure you have right permission..
+        /// </summary>
+        internal static string CouldNotAddAcrRoleAssignment {
+            get {
+                return ResourceManager.GetString("CouldNotAddAcrRoleAssignment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Could not create a service principal with the right permissions. Are you an Owner on this project?.
         /// </summary>
         internal static string CouldNotCreateAServicePrincipalWithTheRightPermissionsAreYouAnOwner {
             get {
                 return ResourceManager.GetString("CouldNotCreateAServicePrincipalWithTheRightPermissionsAreYouAnOwner", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could not find object id of service principal : {0}, please make sure you have graph directory.read permission which is required for grant acrpull permission..
+        /// </summary>
+        internal static string CouldNotFindObjectIdForServicePrincipal {
+            get {
+                return ResourceManager.GetString("CouldNotFindObjectIdForServicePrincipal", resourceCulture);
             }
         }
         

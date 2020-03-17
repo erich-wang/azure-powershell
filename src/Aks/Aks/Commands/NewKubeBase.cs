@@ -64,6 +64,9 @@ namespace Microsoft.Azure.Commands.Aks
         [Parameter(Mandatory = false, HelpMessage = "The server AAD application secret.")]
         public string AadProfileServerAppSecret { get; set; }
 
+        [Parameter(Mandatory = false, HelpMessage = "Grant the 'acrpull' role of the specified ACR to AKS Service Principal")]
+        public string AcrIdToAttach { get; set; }
+
         /// <summary>
         ///     The AAD tenant ID to use for authentication. If not specified, will use the tenant of the deployment subscription.
         /// </summary>
@@ -144,6 +147,11 @@ namespace Microsoft.Azure.Commands.Aks
             if(EnablePodSecurityPolicy.IsPresent)
             {
                 managedCluster.EnablePodSecurityPolicy = EnablePodSecurityPolicy;
+            }
+
+            if(this.IsParameterBound(c => c.AcrIdToAttach))
+            {
+                AddAcrRoleAssignment(AcrIdToAttach, acsServicePrincipal);
             }
 
             return managedCluster;

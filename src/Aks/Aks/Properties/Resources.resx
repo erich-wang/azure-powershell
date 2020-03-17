@@ -342,4 +342,10 @@
   <data name="NotSupportOnThisOs" xml:space="preserve">
     <value>Sorry, this cmdlet is not supported in current OS.</value>
   </data>
+  <data name="CouldNotAddAcrRoleAssignment" xml:space="preserve">
+    <value>Could not add 'acrpull' role assignment, please make sure you have right permission.</value>
+  </data>
+  <data name="CouldNotFindObjectIdForServicePrincipal" xml:space="preserve">
+    <value>Could not find object id of service principal : {0}, please make sure you have graph directory.read permission which is required for grant acrpull permission.</value>
+  </data>
 </root>

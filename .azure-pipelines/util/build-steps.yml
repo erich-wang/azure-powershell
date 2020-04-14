@@ -10,8 +10,9 @@ steps:
     script: 'env | sort'
 
 - task: PowerShell@2
-  targetType: 'inline'
-  script: 'Write-Host $(AnotherEnvVar); Write-Host $(PipeLineUIVar)' 
+  inputs:
+    targetType: 'inline'
+    script: 'Write-Host $(AnotherEnvVar); Write-Host $(PipeLineUIVar)' 
 
 - task: DotNetCoreCLI@2
   displayName: Build

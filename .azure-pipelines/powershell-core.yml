@@ -4,11 +4,12 @@ variables:
   LinuxName: linux
   LinuxImage: ubuntu-18.04
   MacOSName: macOS
-  MacOSImage: macOS-10.13
+  MacOSImage: macOS-10.14
   TestFramework: netcoreapp2.2
   TestTarget: Test
   Configuration: Debug
   AnotherEnvVar: true
+  ADXSDK_ACCESSTOKEN: $(AdxSdkPsAccessToken)
 
 jobs:
 - job: Build

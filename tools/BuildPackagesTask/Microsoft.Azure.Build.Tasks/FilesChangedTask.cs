@@ -19,6 +19,7 @@ namespace Microsoft.WindowsAzure.Build.Tasks
     using Octokit;
     using System.Collections.Generic;
     using System;
+    using System.Runtime.InteropServices;
 
     /// <summary>
     /// Build task to get all of the files changed in a given PR.
@@ -66,10 +67,20 @@ namespace Microsoft.WindowsAzure.Build.Tasks
             }
 
             var debugEnvironmentVariable = Environment.GetEnvironmentVariable("DebugLocalBuildTasks");
+            Console.WriteLine("DebugLocalBuildTasks:" + debugEnvironmentVariable);
+            var token = Environment.GetEnvironmentVariable("ADXSDKPS_ACCESSTOKEN");
+            var uiToken = Environment.GetEnvironmentVariable("AdxSdkPsAccessToken");
+            var anotherVar = Environment.GetEnvironmentVariable("AnotherEnvVar");
+            Console.WriteLine($"token : {token} ; uiToken: {uiToken}; another: {anotherVar}");
             bool debug;
             if (!Boolean.TryParse(debugEnvironmentVariable, out debug))
             {
                 debug = false;
+            }
+
+            if (debug)
+            {
+                Console.WriteLine("PullRequestNumber:" + PullRequestNumber);
             }
 
             int ParsedPullRequestNumber;
@@ -82,6 +93,10 @@ namespace Microsoft.WindowsAzure.Build.Tasks
                 try
                 {
                     var client = new GitHubClient(new ProductHeaderValue("Azure"));
+                    if(RuntimeInformation.IsOSPlatform(OSPlatform.OSX) && string.IsNullOrEmpty(token))
+                    {
+                        client.Credentials = new Credentials(token);
+                    }
                     var files = client.PullRequest.Files(RepositoryOwner, RepositoryName, int.Parse(PullRequestNumber))
                                     .ConfigureAwait(false).GetAwaiter().GetResult();
                     if (files == null)

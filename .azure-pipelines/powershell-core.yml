@@ -34,3 +34,5 @@ jobs:
       osName: $(OSName)
       testFramework: ${{ variables.TestFramework }}
       configuration: ${{ variables.Configuration }}
+    env:
+      ADXSDKPS_ACCESSTOKEN: $(AdxSdkPsAccessToken)

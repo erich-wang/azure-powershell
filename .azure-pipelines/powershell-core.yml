@@ -8,8 +8,6 @@ variables:
   TestFramework: netcoreapp2.2
   TestTarget: Test
   Configuration: Debug
-  AnotherEnvVar: true
-  ADXSDK_ACCESSTOKEN: $(AdxSdkPsAccessToken)
 
 jobs:
 - job: Build

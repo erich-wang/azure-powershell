@@ -68,10 +68,6 @@ namespace Microsoft.WindowsAzure.Build.Tasks
 
             var debugEnvironmentVariable = Environment.GetEnvironmentVariable("DebugLocalBuildTasks");
             Console.WriteLine("DebugLocalBuildTasks:" + debugEnvironmentVariable);
-            var token = Environment.GetEnvironmentVariable("ADXSDKPS_ACCESSTOKEN");
-            var uiToken = Environment.GetEnvironmentVariable("AdxSdkPsAccessToken");
-            var anotherVar = Environment.GetEnvironmentVariable("AnotherEnvVar");
-            Console.WriteLine($"token : {token} ; uiToken: {uiToken}; another: {anotherVar}");
             bool debug;
             if (!Boolean.TryParse(debugEnvironmentVariable, out debug))
             {
@@ -92,8 +88,9 @@ namespace Microsoft.WindowsAzure.Build.Tasks
                 List<string> filesChanged = new List<string>();
                 try
                 {
+                    var token = Environment.GetEnvironmentVariable("NOSCOPEPAT_ADXSDKPS");
                     var client = new GitHubClient(new ProductHeaderValue("Azure"));
-                    if(RuntimeInformation.IsOSPlatform(OSPlatform.OSX) && string.IsNullOrEmpty(token))
+                    if(RuntimeInformation.IsOSPlatform(OSPlatform.OSX) && !string.IsNullOrEmpty(token))
                     {
                         client.Credentials = new Credentials(token);
                     }

@@ -33,8 +33,8 @@ using Microsoft.Azure.Management.Internal.Resources;
 using Microsoft.Rest.Azure;
 using Newtonsoft.Json;
 using Microsoft.Azure.Commands.Common.Authentication;
-using Microsoft.Azure.Commands.Aks.Properties;
 using Microsoft.WindowsAzure.Commands.Utilities.Common;
+using Microsoft.Azure.Commands.Aks.Properties;
 
 namespace Microsoft.Azure.Commands.Aks
 {

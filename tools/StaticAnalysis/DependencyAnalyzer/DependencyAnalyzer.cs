@@ -219,9 +219,13 @@ namespace StaticAnalysis.DependencyAnalyzer
         private static Dictionary<string, Version> Pwsh7Assemblies;
 
         static DependencyAnalyzer() {
-            Pwsh5Assemblies = JsonConvert.DeserializeObject<Dictionary<string, Version>>(Resources.pwsh5_1_0);
-            Pwsh6Assemblies = JsonConvert.DeserializeObject<Dictionary<string, Version>>(Resources.pwsh6_2_4);
-            Pwsh7Assemblies = JsonConvert.DeserializeObject<Dictionary<string, Version>>(Resources.pwsh7_0_0);
+            var pwsh5_1 = JsonConvert.DeserializeObject<Dictionary<string, Version>>(Resources.pwsh5_1_0);
+            var pwsh6_2_4 = JsonConvert.DeserializeObject<Dictionary<string, Version>>(Resources.pwsh6_2_4);
+            var pwsh7_0 = JsonConvert.DeserializeObject<Dictionary<string, Version>>(Resources.pwsh7_0_0);
+
+            Pwsh5Assemblies = new Dictionary<string, Version>(pwsh5_1, StringComparer.InvariantCultureIgnoreCase);
+            Pwsh6Assemblies = new Dictionary<string, Version>(pwsh6_2_4, StringComparer.InvariantCultureIgnoreCase);
+            Pwsh7Assemblies = new Dictionary<string, Version>(pwsh7_0, StringComparer.InvariantCultureIgnoreCase);
         }
 
         public void Analyze(IEnumerable<string> scopes)
@@ -236,11 +240,7 @@ namespace StaticAnalysis.DependencyAnalyzer
                 throw new ArgumentNullException("directories");
             }
 
-            var pwsh5_1 = JsonConvert.DeserializeObject<Dictionary<string, Version>>(Resources.pwsh5_1_0);
-            var pwsh6_2_4 = JsonConvert.DeserializeObject<Dictionary<string, Version>>(Resources.pwsh6_2_4);
-            var pwsh7_0 = JsonConvert.DeserializeObject<Dictionary<string, Version>>(Resources.pwsh7_0_0);
-
-            UpdateReferenceAssemblies(JsonConvert.DeserializeObject<Dictionary<string, Version>>(Resources.CommonAssemblies));
+            UpdateReferenceAssemblies(JsonConvert.DeserializeObject<Dictionary<string, Version>>(Resources.common));
 
             var pwshToFrameworkAssemblies = new Dictionary<string, Dictionary<string, string>>()
             {
@@ -317,7 +317,7 @@ namespace StaticAnalysis.DependencyAnalyzer
                         _extraAssemblyLogger.Decorator.AddDecorator(r => { r.Directory = directoryPath; }, "Directory");
                         _dependencyMapLogger.Decorator.AddDecorator(r => { r.Directory = directoryPath; }, "Directory");
                         _isNetcore = directoryPath.Contains("Az.");
-                        //ProcessDirectory(directoryPath);
+                        ProcessDirectory(directoryPath);
                         _versionConflictLogger.Decorator.Remove("Directory");
                         _missingAssemblyLogger.Decorator.Remove("Directory");
                         _extraAssemblyLogger.Decorator.Remove("Directory");
@@ -376,7 +376,7 @@ namespace StaticAnalysis.DependencyAnalyzer
                         continue;
                     }
                     bool missed = false;
-                    missed = missed || (!Pwsh5Assemblies.ContainsKey(child.Name));
+                    //missed = missed || (!Pwsh5Assemblies.ContainsKey(child.Name));
                     missed = missed || (!Pwsh6Assemblies.ContainsKey(child.Name));
                     missed = missed || (!Pwsh7Assemblies.ContainsKey(child.Name));
                     if(missed)
@@ -548,6 +548,10 @@ namespace StaticAnalysis.DependencyAnalyzer
                 {
                     assemblies[assembly.Name] = assembly;
                     //AddSharedAssembly(assembly);
+                }
+                else
+                {
+                    Console.WriteLine($"Fail to load {Path.GetFileName(file)}");
                 }
 
             }

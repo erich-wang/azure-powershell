@@ -19,7 +19,7 @@ namespace StaticAnalysis.Netcore.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -385,6 +385,17 @@ namespace StaticAnalysis.Netcore.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {
+        ///    &quot;System.Management.Automation&quot;: &quot;0.0.0.0&quot;
+        ///}.
+        /// </summary>
+        internal static string common {
+            get {
+                return ResourceManager.GetString("common", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The number of arguments for generic type &apos;{0}&apos; for &apos;{1}&apos; has been changed from &apos;{2}&apos; to &apos;{3}&apos;..
         /// </summary>
         internal static string DifferentGenericTypeArgumentSizeDescription {
@@ -499,17 +510,17 @@ namespace StaticAnalysis.Netcore.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to {
-        ///  &quot;Markdig.Signed.dll&quot;: &quot;0.17.1.0&quot;,
-        ///  &quot;Microsoft.ApplicationInsights.dll&quot;: &quot;2.12.0.21496&quot;,
-        ///  &quot;Microsoft.CodeAnalysis.CSharp.dll&quot;: &quot;2.10.0.0&quot;,
-        ///  &quot;Microsoft.CodeAnalysis.dll&quot;: &quot;2.10.0.0&quot;,
-        ///  &quot;Microsoft.CSharp.dll&quot;: &quot;4.0.4.0&quot;,
-        ///  &quot;Microsoft.Management.Infrastructure.dll&quot;: &quot;1.0.0.0&quot;,
-        ///  &quot;Microsoft.Management.Infrastructure.Native.dll&quot;: &quot;1.0.0.0&quot;,
-        ///  &quot;Microsoft.VisualBasic.dll&quot;: &quot;10.0.4.0&quot;,
-        ///  &quot;Microsoft.Win32.Primitives.dll&quot;: &quot;4.1.1.0&quot;,
-        ///  &quot;Microsoft.Win32.Registry.AccessControl.dll&quot;: &quot;4.0.3.0&quot;,
-        ///  &quot;Micro [rest of string was truncated]&quot;;.
+        ///    &quot;Markdig.Signed&quot;: &quot;0.17.1.0&quot;,
+        ///    &quot;Microsoft.ApplicationInsights&quot;: &quot;2.12.0.21496&quot;,
+        ///    &quot;Microsoft.CodeAnalysis&quot;: &quot;2.10.0.0&quot;,
+        ///    &quot;Microsoft.CodeAnalysis.CSharp&quot;: &quot;2.10.0.0&quot;,
+        ///    &quot;Microsoft.CSharp&quot;: &quot;4.0.4.0&quot;,
+        ///    &quot;Microsoft.Management.Infrastructure&quot;: &quot;1.0.0.0&quot;,
+        ///    &quot;Microsoft.Management.Infrastructure.Native&quot;: &quot;1.0.0.0&quot;,
+        ///    &quot;Microsoft.VisualBasic&quot;: &quot;10.0.4.0&quot;,
+        ///    &quot;Microsoft.Win32.Primitives&quot;: &quot;4.1.1.0&quot;,
+        ///    &quot;Microsoft.Win32.Registry&quot;: &quot;4.1.1.0&quot;,
+        ///    &quot;Microsoft.Win32.Registry.AccessContro [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string pwsh6_2_4 {
             get {
@@ -519,33 +530,25 @@ namespace StaticAnalysis.Netcore.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to {
-        ///  &quot;Accessibility.dll&quot;: &quot;4.0.0.0&quot;,
-        ///  &quot;DirectWriteForwarder&quot;: &quot;4.0.0.0&quot;,
-        ///  &quot;Markdig.Signed&quot;: &quot;0.18.1.0&quot;,
-        ///  &quot;Microsoft.ApplicationInsights&quot;: &quot;2.13.1.12554&quot;,
-        ///  &quot;Microsoft.CodeAnalysis.CSharp&quot;: &quot;3.4.0.0&quot;,
-        ///  &quot;Microsoft.CodeAnalysis&quot;: &quot;3.4.0.0&quot;,
-        ///  &quot;Microsoft.CSharp&quot;: &quot;4.0.5.0&quot;,
-        ///  &quot;Microsoft.Management.Infrastructure&quot;: &quot;1.0.0.0&quot;,
-        ///  &quot;Microsoft.Management.Infrastructure.Native&quot;: &quot;1.0.0.0&quot;,
-        ///  &quot;Microsoft.VisualBasic.Core&quot;: &quot;10.0.5.0&quot;,
-        ///  &quot;Microsoft.VisualBasic&quot;: &quot;10.0.0.0&quot;,
-        ///  &quot;Microsoft.Win32.Primitives&quot;:  [rest of string was truncated]&quot;;.
+        ///    &quot;Accessibility&quot;: &quot;4.0.0.0&quot;,
+        ///    &quot;DirectWriteForwarder&quot;: &quot;4.0.0.0&quot;,
+        ///    &quot;Markdig.Signed&quot;: &quot;0.18.1.0&quot;,
+        ///    &quot;Microsoft.ApplicationInsights&quot;: &quot;2.13.1.12554&quot;,
+        ///    &quot;Microsoft.CodeAnalysis&quot;: &quot;3.4.0.0&quot;,
+        ///    &quot;Microsoft.CodeAnalysis.CSharp&quot;: &quot;3.4.0.0&quot;,
+        ///    &quot;Microsoft.CSharp&quot;: &quot;4.0.5.0&quot;,
+        ///    &quot;Microsoft.Management.Infrastructure&quot;: &quot;1.0.0.0&quot;,
+        ///    &quot;Microsoft.Management.Infrastructure.Native&quot;: &quot;1.0.0.0&quot;,
+        ///    &quot;Microsoft.VisualBasic&quot;: &quot;10.0.0.0&quot;,
+        ///    &quot;Microsoft.VisualBasic.Core&quot;: &quot;10.0.5.0&quot;,
+        ///    &quot;Microsoft [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string pwsh7_0_0 {
             get {
                 return ResourceManager.GetString("pwsh7_0_0", resourceCulture);
             }
         }
-
-        internal static string CommonAssemblies
-        {
-            get
-            {
-                return ResourceManager.GetString("common", resourceCulture);
-            }
-        }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to The cmdlet &apos;{0}&apos; no longer supports the alias &apos;{1}&apos;..
         /// </summary>

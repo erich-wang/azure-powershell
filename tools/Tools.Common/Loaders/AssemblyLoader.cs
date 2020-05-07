@@ -71,16 +71,12 @@ namespace Tools.Common.Loaders
 #if NETSTANDARD
             try
             {
-                return new AssemblyMetadata(AssemblyLoadContext.Default.LoadFromAssemblyPath(assemblyPath));
+                return new AssemblyMetadata(Assembly.LoadFrom(assemblyPath));
+                //return new AssemblyMetadata(AssemblyLoadContext.Default.LoadFromAssemblyPath(assemblyPath));
             }
             catch(System.IO.FileLoadException ex) when (string.Equals(ex.Message, "Assembly with same name is already loaded"))
             {
-                var assemblyName = AssemblyLoadContext.GetAssemblyName(assemblyPath);
-                var assembly = AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(a => a.GetName().Name == assemblyName?.Name);
-                if (assembly != null)
-                {
-                    result = new AssemblyMetadata(assembly);
-                }
+                result = GetLoadedAssemblyMetadata(assemblyPath);
             }
 #else
             try
@@ -92,6 +88,18 @@ namespace Tools.Common.Loaders
             {
             }
 
+            return result;
+        }
+
+        private AssemblyMetadata GetLoadedAssemblyMetadata(string assemblyPath)
+        {
+            AssemblyMetadata result = null;
+            var assemblyName = AssemblyLoadContext.GetAssemblyName(assemblyPath);
+            var assembly = AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(a => a.GetName().Name == assemblyName?.Name);
+            if (assembly != null)
+            {
+                result = new AssemblyMetadata(assembly);
+            }
             return result;
         }
     }

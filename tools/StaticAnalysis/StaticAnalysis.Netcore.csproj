@@ -4,7 +4,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <OutputPath>$(RepoArtifacts)StaticAnalysis\</OutputPath>
@@ -24,7 +24,7 @@
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-    <PackageReference Include="Microsoft.PowerShell.SDK" Version="6.2.4" />
+    <!--<PackageReference Include="Microsoft.PowerShell.SDK" Version="6.2.4" />-->
   </ItemGroup>
 
   <ItemGroup>
@@ -48,8 +48,14 @@
 
   <ItemGroup>
     <Content Include="Exceptions\**\*.csv" CopyToOutputDirectory="PreserveNewest" />
+    <Compile Remove="DependencyAnalysisLib\**" />
+    <Compile Remove="DependencyAnalysis\**" />
     <Compile Remove="StaticAnalysis.Test\**" />
+    <EmbeddedResource Remove="DependencyAnalysisLib\**" />
+    <EmbeddedResource Remove="DependencyAnalysis\**" />
     <EmbeddedResource Remove="StaticAnalysis.Test\**" />
+    <None Remove="DependencyAnalysisLib\**" />
+    <None Remove="DependencyAnalysis\**" />
     <None Remove="StaticAnalysis.Test\**" />
     <Content Include="log4net.config" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>

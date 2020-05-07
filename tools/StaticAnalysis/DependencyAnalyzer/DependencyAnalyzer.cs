@@ -18,10 +18,10 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using Microsoft.ApplicationInsights.Metrics.Extensibility;
+//using Microsoft.ApplicationInsights.Metrics.Extensibility;
 using Newtonsoft.Json;
-using StaticAnalysis.Netcore.Properties;
-using Tools.Common.Helpers;
+//using StaticAnalysis.Netcore.Properties;
+//using Tools.Common.Helpers;
 using Tools.Common.Issues;
 using Tools.Common.Loaders;
 using Tools.Common.Loggers;
@@ -213,15 +213,19 @@ namespace StaticAnalysis.DependencyAnalyzer
 
         public AnalysisLogger Logger { get; set; }
         public string Name { get; private set; }
+        public bool IsWindowsPwsh { get; set; }
 
         private static Dictionary<string, Version> Pwsh5Assemblies;
         private static Dictionary<string, Version> Pwsh6Assemblies;
         private static Dictionary<string, Version> Pwsh7Assemblies;
 
         static DependencyAnalyzer() {
-            var pwsh5_1 = JsonConvert.DeserializeObject<Dictionary<string, Version>>(Resources.pwsh5_1_0);
-            var pwsh6_2_4 = JsonConvert.DeserializeObject<Dictionary<string, Version>>(Resources.pwsh6_2_4);
-            var pwsh7_0 = JsonConvert.DeserializeObject<Dictionary<string, Version>>(Resources.pwsh7_0_0);
+            var pwsh6 = File.ReadAllText("./pwsh6.2.4.json");
+            var pwsh7 = File.ReadAllText("./pwsh7.0.0.json");
+            var pwsh5 = File.ReadAllText("./pwsh5.1.0.json");
+            var pwsh5_1 = JsonConvert.DeserializeObject<Dictionary<string, Version>>(pwsh5);
+            var pwsh6_2_4 = JsonConvert.DeserializeObject<Dictionary<string, Version>>(pwsh6);
+            var pwsh7_0 = JsonConvert.DeserializeObject<Dictionary<string, Version>>(pwsh7);
 
             Pwsh5Assemblies = new Dictionary<string, Version>(pwsh5_1, StringComparer.InvariantCultureIgnoreCase);
             Pwsh6Assemblies = new Dictionary<string, Version>(pwsh6_2_4, StringComparer.InvariantCultureIgnoreCase);
@@ -240,7 +244,8 @@ namespace StaticAnalysis.DependencyAnalyzer
                 throw new ArgumentNullException("directories");
             }
 
-            UpdateReferenceAssemblies(JsonConvert.DeserializeObject<Dictionary<string, Version>>(Resources.common));
+            var common = File.ReadAllText("./common.json");
+            UpdateReferenceAssemblies(JsonConvert.DeserializeObject<Dictionary<string, Version>>(common));
 
             var pwshToFrameworkAssemblies = new Dictionary<string, Dictionary<string, string>>()
             {
@@ -376,9 +381,15 @@ namespace StaticAnalysis.DependencyAnalyzer
                         continue;
                     }
                     bool missed = false;
-                    //missed = missed || (!Pwsh5Assemblies.ContainsKey(child.Name));
-                    missed = missed || (!Pwsh6Assemblies.ContainsKey(child.Name));
-                    missed = missed || (!Pwsh7Assemblies.ContainsKey(child.Name));
+                    if (IsWindowsPwsh)
+                    {
+                        missed = missed || (!Pwsh5Assemblies.ContainsKey(child.Name));
+                    }
+                    else
+                    {
+                        missed = missed || (!Pwsh6Assemblies.ContainsKey(child.Name));
+                        missed = missed || (!Pwsh7Assemblies.ContainsKey(child.Name));
+                    }
                     if(missed)
                     {
                         if (!missedAssemblies.ContainsKey(child.Name))
@@ -435,7 +446,7 @@ namespace StaticAnalysis.DependencyAnalyzer
                     result.Children.Add(child);
                 }
             }
-            catch
+            catch(Exception e)
             {
                 Logger.WriteError("Error loading assembly {0}", fullPath);
             }
@@ -542,6 +553,10 @@ namespace StaticAnalysis.DependencyAnalyzer
             Dictionary<string, AssemblyRecord> assemblies = new Dictionary<string, AssemblyRecord>(StringComparer.OrdinalIgnoreCase);
             foreach (var file in Directory.GetFiles(directoryPath).Where(file => file.EndsWith(".dll")))
             {
+                var platformFolder = IsWindowsPwsh ? "PreloadAssemblies" : "NetCoreAssemblies";
+                if (file.Contains(platformFolder))
+                    continue;
+
                 var assembly = CreateAssemblyRecord(loader, file);
                 //if (assembly?.Name != null && !IsFrameworkAssembly(assembly.Name))
                 if (assembly?.Name != null)

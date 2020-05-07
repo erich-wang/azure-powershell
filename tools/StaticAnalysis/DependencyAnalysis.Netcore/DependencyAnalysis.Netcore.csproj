@@ -1,0 +1,41 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="$(MSBuildThisFileDirectory)..\..\..\Repo.props" />
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <OutputPath>$(RepoArtifacts)DependencyAnalysis\</OutputPath>
+    <PublishDir>$(OutputPath)</PublishDir>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DefineConstants>TRACE;NETSTANDARD</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>DEBUG;TRACE;NETSTANDARD</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Tools.Common\Tools.Common.Netcore.csproj" />
+    <ProjectReference Include="..\DependencyAnalysisLib\DependencyAnalysisLib.csproj" />
+  </ItemGroup>
+
+  <!--<ItemGroup>
+    <Compile Include="..\DependencyAnalyzer\AssemblyNameComparer.cs" Link="AssemblyNameComparer.cs" />
+    <Compile Include="..\DependencyAnalyzer\AssemblyRecord.cs" Link="AssemblyRecord.cs" />
+    <Compile Include="..\DependencyAnalyzer\AssemblyVersionConflict.cs" Link="AssemblyVersionConflict.cs" />
+    <Compile Include="..\DependencyAnalyzer\DependencyAnalyzer.cs" Link="DependencyAnalyzer.cs" />
+    <Compile Include="..\DependencyAnalyzer\DependencyMap.cs" Link="DependencyMap.cs" />
+    <Compile Include="..\DependencyAnalyzer\ExtraAssembly.cs" Link="ExtraAssembly.cs" />
+    <Compile Include="..\DependencyAnalyzer\MissingAssembly.cs" Link="MissingAssembly.cs" />
+    <Compile Include="..\DependencyAnalyzer\SharedAssemblyConflict.cs" Link="SharedAssemblyConflict.cs" />
+    <Compile Include="..\IStaticAnalyzer.cs" Link="IStaticAnalyzer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Tools.Common\Tools.Common.Netcore.csproj" />
+  </ItemGroup>-->
+
+</Project>

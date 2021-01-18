@@ -19,6 +19,7 @@ using Microsoft.Azure.Commands.Common.Authentication.Abstractions.Core;
 #endif
 using Microsoft.Azure.Commands.Common.Authentication.Models;
 using Microsoft.Azure.Commands.Common.Authentication.Properties;
+
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -76,6 +77,12 @@ namespace Microsoft.Azure.Commands.Common.Authentication.Factories
             List<Type> types = new List<Type>();
             List<object> parameterList = new List<object>();
             List<DelegatingHandler> handlerList = new List<DelegatingHandler> { DefaultCancelRetryHandler.Clone() as CancelRetryHandler};
+            var claimsChallengeProcessor = parameters.FirstOrDefault(parameter => parameter is IClaimsChallengeProcessor) as IClaimsChallengeProcessor;
+            if(claimsChallengeProcessor !=  null)
+            {
+                handlerList.Add(new ClaimsChallengeHandler(claimsChallengeProcessor));
+            }
+
             var customHandlers = GetCustomHandlers();
             if (customHandlers != null && customHandlers.Any())
             {

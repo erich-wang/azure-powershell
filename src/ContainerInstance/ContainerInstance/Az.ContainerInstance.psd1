@@ -76,7 +76,8 @@ FunctionsToExport = @()
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
 CmdletsToExport = 'New-AzContainerGroup', 'Get-AzContainerGroup', 
-               'Remove-AzContainerGroup', 'Get-AzContainerInstanceLog'
+               'Remove-AzContainerGroup', 'Get-AzContainerInstanceLog',
+               'Get-AzContainerGroupV2'
 
 # Variables to export from this module
 # VariablesToExport = @()

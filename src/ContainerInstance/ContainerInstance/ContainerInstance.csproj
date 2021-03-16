@@ -12,7 +12,12 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="6.2.2" />
+    <PackageReference Include="Azure.ResourceManager.ContainerInstance" Version="1.0.0-beta.1" />
     <PackageReference Include="Microsoft.Azure.Management.ContainerInstance" Version="2.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Accounts\Authenticators\Authenticators.csproj" />
   </ItemGroup>
 
 </Project>

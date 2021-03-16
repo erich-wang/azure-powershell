@@ -43,7 +43,7 @@ namespace Microsoft.Azure.PowerShell.Authenticators
 
         private readonly static TimeSpan ExpirationThreshold = TimeSpan.FromMinutes(5);
 
-        private TokenCredential TokenCredential { get; set; }
+        public TokenCredential TokenCredential { get; private set; }
 
         private TokenRequestContext TokenRequestContext { get; set; }
 
